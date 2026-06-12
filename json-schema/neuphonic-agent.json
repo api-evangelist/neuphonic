@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.neuphonic.com/schemas/agent",
+  "title": "Agent",
+  "description": "A conversational AI voice agent that combines Neuphonic TTS with GPT-4o for interactive voice applications.",
+  "type": "object",
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "Unique identifier for the agent."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the agent."
+    },
+    "prompt": {
+      "type": "string",
+      "description": "System prompt defining the agent's personality and behavior."
+    },
+    "voice": {
+      "type": "string",
+      "description": "Voice ID used by the agent for speech synthesis."
+    },
+    "lang_code": {
+      "type": "string",
+      "description": "Language code for the agent's speech output.",
+      "enum": ["en", "es", "de", "fr", "ur", "ja", "ko", "zh", "pt"]
+    },
+    "mcp_servers": {
+      "type": "array",
+      "description": "List of Model Context Protocol (MCP) server configurations integrated with this agent.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the MCP server."
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name for the MCP server."
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the agent was created."
+    }
+  },
+  "required": ["agent_id", "name"]
+}

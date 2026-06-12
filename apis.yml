@@ -50,6 +50,8 @@ apis:
         url: https://docs.neuphonic.com/build-group/text-to-speech
       - type: OpenAPI
         url: https://docs.neuphonic.com/api-reference/tts/sse
+      - type: OpenAPI
+        url: openapi/neuphonic-openapi.yml
 
   - name: Neuphonic TTS WebSocket API
     description: >
@@ -128,6 +130,10 @@ common:
     url: rate-limits/neuphonic-rate-limits.yml
   - type: FinOps
     url: finops/neuphonic-finops.yml
+  - type: Vocabulary
+    url: vocabulary/neuphonic-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/neuphonic-context.jsonld
 
 maintainers:
   - FN: Kin Lane

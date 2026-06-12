@@ -1,0 +1,31 @@
+{
+  "title": "Clone Voice Example",
+  "description": "Example multipart/form-data POST request to create a cloned voice from an audio sample.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.neuphonic.com/voices?voice_name=My+Cloned+Voice&lang_code=en",
+    "headers": {
+      "X-API-KEY": "your-api-key",
+      "Content-Type": "multipart/form-data"
+    },
+    "body": {
+      "voice_name": "My Cloned Voice",
+      "voice_tags": "custom,english",
+      "lang_code": "en",
+      "voice_file": "<binary MP3 or WAV audio file, min 6 seconds, max 10MB>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "message": "Voice cloned successfully.",
+      "voice_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    }
+  },
+  "notes": [
+    "Audio file must be MP3 or WAV format",
+    "Minimum duration: 6 seconds",
+    "Maximum file size: 10MB",
+    "Cloning available in English, French, German, and Spanish"
+  ]
+}

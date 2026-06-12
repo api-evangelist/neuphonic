@@ -1,0 +1,25 @@
+{
+  "title": "SSE Text-to-Speech Example",
+  "description": "Example POST request to stream speech synthesis via Server-Sent Events.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.neuphonic.com/sse/speak/en",
+    "headers": {
+      "X-API-KEY": "your-api-key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "text": "Hello! Welcome to Neuphonic, your ultra-low-latency voice AI platform.",
+      "voice": "e564ba7e-aa8d-46a2-96a8-8dffedade48f",
+      "speed": 1.0,
+      "sampling_rate": 22050
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/event-stream"
+    },
+    "description": "Streams Server-Sent Events with base64-encoded PCM audio chunks. The first audio chunk is delivered in under 25ms."
+  }
+}

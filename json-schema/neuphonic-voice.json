@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.neuphonic.com/schemas/voice",
+  "title": "Voice",
+  "description": "A voice available for text-to-speech synthesis in the Neuphonic platform, either a standard voice or a user-cloned voice.",
+  "type": "object",
+  "properties": {
+    "voice_id": {
+      "type": "string",
+      "description": "Unique identifier for the voice."
+    },
+    "voice_name": {
+      "type": "string",
+      "description": "Display name of the voice."
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the voice for categorization."
+    },
+    "lang_code": {
+      "type": "string",
+      "description": "Language code for the voice (e.g., en, es, de, fr, ur, ja, ko, zh, pt).",
+      "enum": ["en", "es", "de", "fr", "ur", "ja", "ko", "zh", "pt"]
+    },
+    "is_cloned": {
+      "type": "boolean",
+      "description": "Whether this is a user-created cloned voice (true) or a standard Neuphonic voice (false)."
+    }
+  },
+  "required": ["voice_id", "voice_name"]
+}

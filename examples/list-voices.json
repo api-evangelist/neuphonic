@@ -1,0 +1,41 @@
+{
+  "title": "List Voices Example",
+  "description": "Example response from GET /voices showing available TTS voices.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.neuphonic.com/voices",
+    "headers": {
+      "X-API-KEY": "your-api-key"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "voices": [
+          {
+            "voice_id": "e564ba7e-aa8d-46a2-96a8-8dffedade48f",
+            "voice_name": "Nova",
+            "tags": ["female", "neutral", "conversational"],
+            "lang_code": "en",
+            "is_cloned": false
+          },
+          {
+            "voice_id": "c6b4fef6-2f1a-4e9e-9fb9-5e9ef32abc12",
+            "voice_name": "Marcus",
+            "tags": ["male", "deep", "professional"],
+            "lang_code": "en",
+            "is_cloned": false
+          },
+          {
+            "voice_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "voice_name": "My Custom Voice",
+            "tags": ["custom"],
+            "lang_code": "en",
+            "is_cloned": true
+          }
+        ]
+      }
+    }
+  }
+}

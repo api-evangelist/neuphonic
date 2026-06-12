@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.neuphonic.com/schemas/sse-request",
+  "title": "SSE TTS Request",
+  "description": "Request body for the Neuphonic Server-Sent Events text-to-speech endpoint.",
+  "type": "object",
+  "required": ["text"],
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The text to synthesize into speech.",
+      "minLength": 1
+    },
+    "voice": {
+      "type": "string",
+      "description": "Voice ID or name to use for synthesis. Defaults to a standard voice if not specified."
+    },
+    "speed": {
+      "type": "number",
+      "description": "Speech speed multiplier. 1.0 is normal speed; values above 1.0 are faster.",
+      "default": 1.0,
+      "minimum": 0.5,
+      "maximum": 3.0
+    },
+    "sampling_rate": {
+      "type": "integer",
+      "description": "Audio sampling rate in Hz for the output PCM stream.",
+      "default": 22050,
+      "enum": [8000, 16000, 22050, 44100, 48000]
+    }
+  }
+}

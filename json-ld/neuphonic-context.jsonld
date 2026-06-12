@@ -1,0 +1,130 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "neuphonic": "https://api.neuphonic.com/vocab#",
+
+    "Voice": "neuphonic:Voice",
+    "Agent": "neuphonic:Agent",
+    "SseRequest": "neuphonic:SseRequest",
+    "VoiceCloneRequest": "neuphonic:VoiceCloneRequest",
+    "McpServer": "neuphonic:McpServer",
+
+    "voice_id": {
+      "@id": "neuphonic:voiceId",
+      "@type": "xsd:string"
+    },
+    "voice_name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "agent_id": {
+      "@id": "neuphonic:agentId",
+      "@type": "xsd:string"
+    },
+    "lang_code": {
+      "@id": "schema:inLanguage",
+      "@type": "xsd:string"
+    },
+    "is_cloned": {
+      "@id": "neuphonic:isCloned",
+      "@type": "xsd:boolean"
+    },
+    "tags": {
+      "@id": "schema:keywords",
+      "@container": "@set"
+    },
+    "text": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "voice": {
+      "@id": "neuphonic:usesVoice",
+      "@type": "@id"
+    },
+    "speed": {
+      "@id": "neuphonic:speed",
+      "@type": "xsd:float"
+    },
+    "sampling_rate": {
+      "@id": "neuphonic:samplingRate",
+      "@type": "xsd:integer"
+    },
+    "prompt": {
+      "@id": "neuphonic:systemPrompt",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "mcp_servers": {
+      "@id": "neuphonic:mcpServers",
+      "@container": "@set"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "expiration": {
+      "@id": "neuphonic:tokenExpiration",
+      "@type": "xsd:integer"
+    },
+    "jwt_token": {
+      "@id": "neuphonic:jwtToken",
+      "@type": "xsd:string"
+    },
+    "api_key": {
+      "@id": "neuphonic:apiKey",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "neuphonic:responseData"
+    },
+    "voices": {
+      "@id": "neuphonic:voices",
+      "@container": "@set"
+    },
+    "agents": {
+      "@id": "neuphonic:agents",
+      "@container": "@set"
+    },
+    "detail": {
+      "@id": "neuphonic:errorDetail",
+      "@container": "@set"
+    },
+    "loc": {
+      "@id": "neuphonic:errorLocation",
+      "@container": "@list"
+    },
+    "msg": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "neuphonic:errorType",
+      "@type": "xsd:string"
+    },
+    "voice_file": {
+      "@id": "neuphonic:voiceFile",
+      "@type": "@id"
+    },
+    "voice_tags": {
+      "@id": "schema:keywords",
+      "@type": "xsd:string"
+    },
+    "token": {
+      "@id": "neuphonic:livekitToken",
+      "@type": "xsd:string"
+    }
+  }
+}

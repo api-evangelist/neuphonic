@@ -1,0 +1,43 @@
+{
+  "title": "Create Agent Example",
+  "description": "Example POST request to create a conversational AI voice agent.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.neuphonic.com/agents",
+    "headers": {
+      "X-API-KEY": "your-api-key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Customer Support Assistant",
+      "prompt": "You are a helpful customer support assistant for an e-commerce platform. Be friendly, concise, and helpful. If you cannot answer a question, offer to connect the customer with a human agent.",
+      "voice": "e564ba7e-aa8d-46a2-96a8-8dffedade48f",
+      "lang_code": "en",
+      "mcp_servers": [
+        {
+          "url": "https://mcp.example.com/orders",
+          "name": "Order Management MCP"
+        }
+      ]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": {
+        "agent_id": "agt-7f8e9d0c-1a2b-3c4d-5e6f-7g8h9i0j1k2l",
+        "name": "Customer Support Assistant",
+        "prompt": "You are a helpful customer support assistant...",
+        "voice": "e564ba7e-aa8d-46a2-96a8-8dffedade48f",
+        "lang_code": "en",
+        "mcp_servers": [
+          {
+            "url": "https://mcp.example.com/orders",
+            "name": "Order Management MCP"
+          }
+        ],
+        "created_at": "2026-06-12T00:00:00Z"
+      }
+    }
+  }
+}

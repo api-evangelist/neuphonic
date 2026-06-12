@@ -1,0 +1,99 @@
+vocabulary:
+  - term: text-to-speech
+    abbreviation: TTS
+    definition: >
+      The process of converting written text into spoken audio. Neuphonic's TTS
+      engine delivers sub-25ms latency for the first audio chunk.
+
+  - term: Server-Sent Events
+    abbreviation: SSE
+    definition: >
+      A web technology allowing a server to push real-time updates to a client
+      over a single HTTP connection. Neuphonic uses SSE to stream PCM audio
+      chunks from the /sse/speak/{lang_code} endpoint.
+
+  - term: WebSocket
+    definition: >
+      A full-duplex communication protocol over a persistent TCP connection.
+      Neuphonic's WebSocket TTS endpoint (wss://api.neuphonic.com) enables
+      continuous, low-latency voice streaming with a 60-second connection timeout.
+
+  - term: voice cloning
+    definition: >
+      The process of creating a synthetic voice model from audio samples. Neuphonic
+      requires a minimum of 6 seconds of audio (MP3 or WAV, max 10MB) and supports
+      cloning in English, French, German, and Spanish.
+
+  - term: lang_code
+    definition: >
+      A two-letter language code identifying the language for TTS synthesis or
+      voice cloning. Neuphonic supports: en (English), es (Spanish), de (German),
+      fr (French), ur (Urdu), ja (Japanese), ko (Korean), zh (Chinese), pt (Portuguese).
+
+  - term: PCM
+    abbreviation: Pulse Code Modulation
+    definition: >
+      A raw, uncompressed digital audio format. Neuphonic SSE streams return
+      audio in PCM format, allowing developers to control sampling rate
+      (e.g., 22050 Hz or 44100 Hz).
+
+  - term: STOP token
+    definition: >
+      A special signal sent over a Neuphonic WebSocket connection to indicate
+      that no more text will be sent and the server should finalize the audio
+      stream.
+
+  - term: sampling_rate
+    definition: >
+      The number of audio samples captured per second, measured in Hz. Neuphonic
+      supports configurable sampling rates including 8000, 16000, 22050, 44100,
+      and 48000 Hz.
+
+  - term: agent
+    definition: >
+      A Neuphonic conversational AI voice agent that combines Neuphonic TTS with
+      GPT-4o for interactive voice applications. Agents support MCP server
+      integration, interruption handling, and multilingual operation.
+
+  - term: Model Context Protocol
+    abbreviation: MCP
+    definition: >
+      An open standard for connecting AI models to external tools and data sources.
+      Neuphonic agents can integrate with MCP servers to extend their capabilities
+      (e.g., retrieving order data, querying databases).
+
+  - term: LiveKit
+    definition: >
+      An open-source WebRTC infrastructure platform used by Neuphonic for real-time
+      agent communication sessions. Clients obtain a LiveKit token via
+      POST /agents/{agent_id}/token to join an agent session.
+
+  - term: JWT
+    abbreviation: JSON Web Token
+    definition: >
+      A compact, URL-safe token format used for authentication. Neuphonic's
+      /sse/auth endpoint exchanges an API key for a short-lived JWT to enable
+      faster authentication on subsequent SSE requests.
+
+  - term: X-API-KEY
+    definition: >
+      The HTTP request header used to pass a Neuphonic API key for authenticating
+      SSE and REST API requests. WebSocket connections instead pass the key as an
+      api_key query parameter.
+
+  - term: NeuTTS Air
+    definition: >
+      Neuphonic's open-source on-device TTS model designed to run without a GPU.
+      Suitable for edge deployments where cloud connectivity is limited or
+      privacy is paramount.
+
+  - term: NeuTTS Nano
+    definition: >
+      Neuphonic's compact open-source on-device TTS model optimized for minimal
+      resource usage. Runs on-device without a GPU.
+
+  - term: latency
+    definition: >
+      The time delay between sending a TTS request and receiving the first audio
+      chunk. Neuphonic targets sub-25ms latency for the initial audio response
+      in streaming mode.
