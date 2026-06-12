@@ -1,0 +1,88 @@
+spec: FinOps Framework 1.0
+provider: Neuphonic
+providerId: neuphonic
+created: 2026-06-12
+modified: 2026-06-12
+focusVersion: '1.0'
+
+billingModel:
+  type: subscription
+  description: >
+    Neuphonic uses a tiered subscription model with a free entry tier,
+    a fixed-price Business plan at $79/month, and custom Enterprise pricing
+    negotiated with the sales team. Usage within each tier is not metered
+    per character or per request in any publicly documented way; access
+    and concurrency scale with plan level.
+  tiers:
+    - name: Free
+      price: 0
+      currency: USD
+      period: monthly
+    - name: Business
+      price: 79
+      currency: USD
+      period: monthly
+    - name: Enterprise
+      price: custom
+      currency: USD
+      period: monthly
+
+focusColumns:
+  - column: ProviderName
+    value: Neuphonic
+  - column: ServiceName
+    value: Neuphonic TTS API
+  - column: ServiceCategory
+    value: AI and Machine Learning
+  - column: ChargeType
+    value: Usage
+  - column: BillingCurrency
+    value: USD
+  - column: PricingUnit
+    value: Subscription
+  - column: PricingQuantity
+    value: 1
+
+meters:
+  - name: TTS API Requests
+    description: >
+      Text-to-speech synthesis requests via SSE or WebSocket endpoints.
+      No publicly documented per-request or per-character pricing; access
+      is bundled within plan tier.
+    unit: requests
+    metered: false
+    planDependent: true
+
+  - name: Voice Cloning
+    description: >
+      Voice cloning operations accepting audio files up to 10MB. Available
+      on Business and Enterprise plans. Per-clone pricing is not publicly
+      documented.
+    unit: clones
+    metered: false
+    planDependent: true
+
+  - name: Agent Sessions
+    description: >
+      Conversational AI agent sessions using the Agent API. Available on
+      Business and Enterprise plans.
+    unit: sessions
+    metered: false
+    planDependent: true
+
+principles:
+  - name: Visibility
+    description: >
+      Neuphonic offers a free playground at app.neuphonic.com for testing
+      and experimentation, enabling cost-free evaluation before committing
+      to a paid plan.
+  - name: Optimization
+    description: >
+      Annual Business plan billing ($948/year) provides approximately a
+      one-month discount compared to monthly billing ($948 vs $948), giving
+      predictable annual spend.
+  - name: Accountability
+    description: >
+      Enterprise pricing is negotiated directly with the Neuphonic sales
+      team, enabling custom cost structures aligned to actual usage volume
+      and deployment requirements.

@@ -1,0 +1,96 @@
+spec: API Commons Plans 0.1
+provider: Neuphonic
+providerId: neuphonic
+created: 2026-06-12
+modified: 2026-06-12
+reconciled: true
+url: https://www.neuphonic.com/pricing
+
+plans:
+  - name: Free
+    type: freemium
+    description: >
+      Entry-level plan allowing developers to get started with the Neuphonic
+      TTS API. Includes access to core SSE and WebSocket endpoints with
+      limited concurrency and language support.
+    price:
+      amount: 0
+      currency: USD
+      period: monthly
+    features:
+      - type: boolean
+        name: TTS SSE API Access
+        value: true
+      - type: boolean
+        name: TTS WebSocket API Access
+        value: true
+      - type: boolean
+        name: Voice Cloning
+        value: false
+      - type: boolean
+        name: Agent API Access
+        value: false
+
+  - name: Business
+    type: paid
+    description: >
+      Production-ready plan for businesses requiring higher concurrency,
+      additional language support, and access to voice cloning and agent
+      capabilities.
+    price:
+      amount: 79
+      currency: USD
+      period: monthly
+    annualPrice:
+      amount: 948
+      currency: USD
+      period: yearly
+    features:
+      - type: boolean
+        name: TTS SSE API Access
+        value: true
+      - type: boolean
+        name: TTS WebSocket API Access
+        value: true
+      - type: boolean
+        name: Voice Cloning
+        value: true
+      - type: boolean
+        name: Agent API Access
+        value: true
+      - type: boolean
+        name: Multilingual Support
+        value: true
+
+  - name: Enterprise
+    type: enterprise
+    description: >
+      Custom pricing for large-scale deployments requiring dedicated
+      infrastructure, SLAs, on-premises deployment options, and enterprise
+      support. Contact Neuphonic sales for custom arrangements.
+    price:
+      amount: custom
+      currency: USD
+      period: monthly
+    features:
+      - type: boolean
+        name: TTS SSE API Access
+        value: true
+      - type: boolean
+        name: TTS WebSocket API Access
+        value: true
+      - type: boolean
+        name: Voice Cloning
+        value: true
+      - type: boolean
+        name: Agent API Access
+        value: true
+      - type: boolean
+        name: On-Premises Deployment
+        value: true
+      - type: boolean
+        name: Dedicated Support
+        value: true
+      - type: boolean
+        name: Custom SLA
+        value: true

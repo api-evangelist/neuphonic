@@ -1,0 +1,59 @@
+spec: API Commons Rate Limits 0.1
+provider: Neuphonic
+providerId: neuphonic
+created: 2026-06-12
+modified: 2026-06-12
+url: https://docs.neuphonic.com/
+
+notes: >
+  Neuphonic does not publicly publish specific numeric rate limits in its
+  documentation. The following limits are documented behaviors derived from
+  official API reference pages. WebSocket connections have an explicit 60-second
+  idle timeout. Concurrency limits scale with plan tier (Free, Business,
+  Enterprise). Contact Neuphonic for enterprise-tier limit details.
+
+limits:
+  - name: WebSocket Connection Timeout
+    scope: connection
+    description: >
+      WebSocket connections to wss://api.neuphonic.com/speak/{lang_code}
+      automatically close after 60 seconds of inactivity. Clients must send
+      a <STOP> token to signal completion before the timeout.
+    value: 60
+    unit: seconds
+    type: quota
+
+  - name: Voice Cloning Audio File Size
+    scope: request
+    description: >
+      Audio files submitted for voice cloning must not exceed 10 MB in size
+      and must be at least 6 seconds in duration. Accepted formats are
+      MP3 and WAV.
+    value: 10
+    unit: MB
+    type: quota
+
+  - name: Voice Cloning Audio Duration Minimum
+    scope: request
+    description: >
+      A minimum of 6 seconds of audio is required for voice cloning requests.
+    value: 6
+    unit: seconds
+    type: quota
+
+  - name: Concurrent Connections
+    scope: account
+    description: >
+      Concurrency limits apply at the account level and vary by plan. Free
+      tier has limited concurrency; Business and Enterprise tiers support
+      higher concurrency. Specific numeric limits are not published.
+    type: quota
+    planDependent: true
+
+errorHandling:
+  throttledStatusCode: 429
+  retryAfterHeader: Retry-After
+  description: >
+    When rate limits are exceeded, the API returns HTTP 429 Too Many Requests.
+    Clients should respect the Retry-After header value when present before
+    retrying requests.
