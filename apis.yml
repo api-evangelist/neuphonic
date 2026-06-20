@@ -1,7 +1,7 @@
 aid: neuphonic
 name: Neuphonic
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/neuphonic/refs/heads/main/apis.yml
 created: 2026-06-12
 modified: 2026-06-12
@@ -37,7 +37,7 @@ apis:
       Accepts POST requests with text content and returns streaming audio in
       PCM format. Supports language selection, voice selection, speed control,
       and sampling rate configuration.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.neuphonic.com/build-group/text-to-speech
     baseURL: https://api.neuphonic.com
     tags:
@@ -60,7 +60,7 @@ apis:
       multiple text chunks over a single persistent connection. Includes a
       60-second connection timeout and requires a STOP token to signal
       completion.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.neuphonic.com/build-group/text-to-speech
     baseURL: wss://api.neuphonic.com
     tags:
@@ -81,7 +81,7 @@ apis:
       model. Supports creating, retrieving, updating, listing, and deleting
       cloned voices. Voice cloning is available in English, French, German, and
       Spanish.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.neuphonic.com/build-group/voice-cloning
     baseURL: https://api.neuphonic.com
     tags:
@@ -98,7 +98,7 @@ apis:
       combine Neuphonic TTS with GPT-4o for interactive voice applications and
       support Model Context Protocol (MCP) server integration, multilingual
       operation, and interruption handling for natural conversational flow.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.neuphonic.com/
     baseURL: https://api.neuphonic.com
     tags:
