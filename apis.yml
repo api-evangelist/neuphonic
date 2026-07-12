@@ -110,6 +110,10 @@ apis:
         url: https://docs.neuphonic.com/
 
 common:
+  - type: DomainSecurity
+    url: security/neuphonic-domain-security.yml
+  - type: Authentication
+    url: authentication/neuphonic-authentication.yml
   - type: Website
     url: https://www.neuphonic.com/
   - type: Documentation

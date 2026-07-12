@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/neuphonic-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  description: API key passed via the X-API-KEY request header.
+  sources:
+  - openapi/neuphonic-openapi.yml
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: API key passed as a query parameter (used for WebSocket connections).
+  sources:
+  - openapi/neuphonic-openapi.yml
