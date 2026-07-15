@@ -110,6 +110,8 @@ apis:
         url: https://docs.neuphonic.com/
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/neuphonic-agentic-access.yml
   - type: DomainSecurity
     url: security/neuphonic-domain-security.yml
   - type: Authentication
