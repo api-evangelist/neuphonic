@@ -1,0 +1,306 @@
+openapi: 3.0.3
+info:
+  title: Neuphonic Agents API
+  description: 'Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
+
+    '
+  version: 0.1.0
+  contact:
+    url: https://docs.neuphonic.com/
+servers:
+- url: https://api.neuphonic.com
+  description: Neuphonic Production API
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Agents
+paths:
+  /agents:
+    get:
+      summary: List Agents
+      description: List all conversational AI voice agents belonging to the authenticated user.
+      operationId: list_all_agents_agents_get
+      parameters:
+      - $ref: '#/components/parameters/ApiKeyQuery'
+      - $ref: '#/components/parameters/JwtTokenQuery'
+      - $ref: '#/components/parameters/ApiKeyHeader'
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      agents:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      tags:
+      - Agents
+    post:
+      summary: Create Agent
+      description: 'Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling.
+
+        '
+      operationId: create_agent_agents_post
+      parameters:
+      - $ref: '#/components/parameters/ApiKeyQuery'
+      - $ref: '#/components/parameters/JwtTokenQuery'
+      - $ref: '#/components/parameters/ApiKeyHeader'
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentCreate'
+      responses:
+        '200':
+          description: Agent created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      tags:
+      - Agents
+  /agents/{agent_id}:
+    get:
+      summary: Get Agent
+      description: Retrieve all details for a specific agent by its ID.
+      operationId: get_agent_agents__agent_id__get
+      parameters:
+      - name: agent_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the agent.
+      - $ref: '#/components/parameters/ApiKeyQuery'
+      - $ref: '#/components/parameters/JwtTokenQuery'
+      - $ref: '#/components/parameters/ApiKeyHeader'
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      tags:
+      - Agents
+    delete:
+      summary: Delete Agent
+      description: Delete a specific agent by its ID.
+      operationId: delete_agent_agents__agent_id__delete
+      parameters:
+      - name: agent_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the agent to delete.
+      - $ref: '#/components/parameters/ApiKeyQuery'
+      - $ref: '#/components/parameters/JwtTokenQuery'
+      - $ref: '#/components/parameters/ApiKeyHeader'
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Agent deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      tags:
+      - Agents
+  /agents/{agent_id}/token:
+    post:
+      summary: Get LiveKit Token
+      description: 'Get a LiveKit token for a specific agent to establish a real-time communication session.
+
+        '
+      operationId: get_livekit_token_agents__agent_id__token_post
+      parameters:
+      - name: agent_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique identifier of the agent.
+      - $ref: '#/components/parameters/ApiKeyQuery'
+      - $ref: '#/components/parameters/JwtTokenQuery'
+      - $ref: '#/components/parameters/ApiKeyHeader'
+      - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: LiveKit token issued successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      tags:
+      - Agents
+components:
+  schemas:
+    ValidationError:
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      properties:
+        loc:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+          description: Location of the error in the request.
+        msg:
+          type: string
+          description: Human-readable error message.
+        type:
+          type: string
+          description: Error type identifier.
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    AgentCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name for the new agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's personality and behavior.
+        voice:
+          type: string
+          description: Voice ID to use for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent (e.g., en, es, de).
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: MCP server configurations to integrate with the agent.
+      additionalProperties: true
+    Agent:
+      type: object
+      properties:
+        agent_id:
+          type: string
+          description: Unique identifier for the agent.
+        name:
+          type: string
+          description: Display name of the agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's behavior.
+        voice:
+          type: string
+          description: Voice ID used by the agent for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent.
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: List of MCP server configurations integrated with this agent.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the agent was created.
+  parameters:
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: Bearer JWT token in the Authorization header.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: API key for authentication.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: API key in the X-API-KEY header.
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key passed via the X-API-KEY request header.
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key passed as a query parameter (used for WebSocket connections).

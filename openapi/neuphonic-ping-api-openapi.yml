@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: Neuphonic Agents Ping API
+  description: 'Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
+
+    '
+  version: 0.1.0
+  contact:
+    url: https://docs.neuphonic.com/
+servers:
+- url: https://api.neuphonic.com
+  description: Neuphonic Production API
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Ping
+paths:
+  /ping:
+    get:
+      summary: Ping
+      description: Health check endpoint to verify the API is reachable.
+      operationId: ping_ping_get
+      security: []
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Ping
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key passed via the X-API-KEY request header.
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key passed as a query parameter (used for WebSocket connections).
