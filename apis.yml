@@ -1,7 +1,20 @@
 aid: neuphonic
 name: Neuphonic
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/neuphonic.png
 url: https://raw.githubusercontent.com/api-evangelist/neuphonic/refs/heads/main/apis.yml
 created: 2026-06-12
 modified: 2026-06-12
@@ -31,84 +44,102 @@ tags:
   - Multilingual
   - On-Device AI
 apis:
-  - name: Neuphonic TTS SSE API
-    description: >
-      Server-Sent Events endpoint for real-time text-to-speech synthesis.
-      Accepts POST requests with text content and returns streaming audio in
-      PCM format. Supports language selection, voice selection, speed control,
-      and sampling rate configuration.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.neuphonic.com/build-group/text-to-speech
-    baseURL: https://api.neuphonic.com
-    tags:
-      - Text-to-Speech
-      - SSE
-      - Streaming
-      - Audio
-    properties:
-      - type: Documentation
-        url: https://docs.neuphonic.com/build-group/text-to-speech
-      - type: OpenAPI
-        url: https://docs.neuphonic.com/api-reference/tts/sse
-      - type: OpenAPI
-        url: openapi/neuphonic-openapi.yml
-
-  - name: Neuphonic TTS WebSocket API
-    description: >
-      WebSocket endpoint for continuous, low-latency text-to-speech streaming.
-      Enables real-time voice synthesis with sub-25ms latency, supporting
-      multiple text chunks over a single persistent connection. Includes a
-      60-second connection timeout and requires a STOP token to signal
-      completion.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.neuphonic.com/build-group/text-to-speech
-    baseURL: wss://api.neuphonic.com
-    tags:
-      - Text-to-Speech
-      - WebSocket
-      - Real-Time
-      - Streaming
-    properties:
-      - type: Documentation
-        url: https://docs.neuphonic.com/build-group/text-to-speech
-      - type: AsyncAPI
-        url: https://docs.neuphonic.com/api-reference/tts/websocket
-
-  - name: Neuphonic Voice Cloning API
-    description: >
-      REST API for creating and managing cloned voices. Accepts audio samples
-      (MP3 or WAV, minimum 6 seconds, under 10MB) and generates a custom voice
-      model. Supports creating, retrieving, updating, listing, and deleting
-      cloned voices. Voice cloning is available in English, French, German, and
-      Spanish.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.neuphonic.com/build-group/voice-cloning
-    baseURL: https://api.neuphonic.com
-    tags:
-      - Voice Cloning
-      - Audio
-      - Machine Learning
-    properties:
-      - type: Documentation
-        url: https://docs.neuphonic.com/build-group/voice-cloning
-
-  - name: Neuphonic Agent API
-    description: >
-      REST API for creating and managing conversational AI voice agents. Agents
-      combine Neuphonic TTS with GPT-4o for interactive voice applications and
-      support Model Context Protocol (MCP) server integration, multilingual
-      operation, and interruption handling for natural conversational flow.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.neuphonic.com/
-    baseURL: https://api.neuphonic.com
-    tags:
-      - Agents
-      - Conversational AI
-      - Voice Assistant
-    properties:
-      - type: Documentation
-        url: https://docs.neuphonic.com/
-
+- name: Neuphonic TTS WebSocket API
+  description: >
+    WebSocket endpoint for continuous, low-latency text-to-speech streaming. Enables real-time voice synthesis
+    with sub-25ms latency, supporting multiple text chunks over a single persistent connection. Includes
+    a 60-second connection timeout and requires a STOP token to signal completion.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.neuphonic.com/build-group/text-to-speech
+  baseURL: wss://api.neuphonic.com
+  tags:
+  - Text-to-Speech
+  - WebSocket
+  - Real-Time
+  - Streaming
+  properties:
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/text-to-speech
+  - type: AsyncAPI
+    url: https://docs.neuphonic.com/api-reference/tts/websocket
+- name: Neuphonic Voice Cloning API
+  description: >
+    REST API for creating and managing cloned voices. Accepts audio samples (MP3 or WAV, minimum 6 seconds,
+    under 10MB) and generates a custom voice model. Supports creating, retrieving, updating, listing,
+    and deleting cloned voices. Voice cloning is available in English, French, German, and Spanish.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.neuphonic.com/build-group/voice-cloning
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Voice Cloning
+  - Audio
+  - Machine Learning
+  properties:
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/voice-cloning
+- name: Neuphonic Agent API
+  description: >
+    REST API for creating and managing conversational AI voice agents. Agents combine Neuphonic TTS with
+    GPT-4o for interactive voice applications and support Model Context Protocol (MCP) server integration,
+    multilingual operation, and interruption handling for natural conversational flow.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.neuphonic.com/
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Agents
+  - Conversational AI
+  - Voice Assistant
+  properties:
+  - type: Documentation
+    url: https://docs.neuphonic.com/
+- aid: neuphonic:neuphonic-agents-api
+  name: Neuphonic Agents API
+  description: The Agents API from Neuphonic — 3 operation(s) for agents.
+  humanURL: https://docs.neuphonic.com/build-group/text-to-speech
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Agents
+  properties:
+  - type: OpenAPI
+    url: openapi/neuphonic-agents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/text-to-speech
+- aid: neuphonic:neuphonic-ping-api
+  name: Neuphonic Ping API
+  description: The Ping API from Neuphonic — 1 operation(s) for ping.
+  humanURL: https://docs.neuphonic.com/build-group/text-to-speech
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Ping
+  properties:
+  - type: OpenAPI
+    url: openapi/neuphonic-ping-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/text-to-speech
+- aid: neuphonic:neuphonic-sse-api
+  name: Neuphonic Sse API
+  description: The Sse API from Neuphonic — 2 operation(s) for sse.
+  humanURL: https://docs.neuphonic.com/build-group/text-to-speech
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Sse
+  properties:
+  - type: OpenAPI
+    url: openapi/neuphonic-sse-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/text-to-speech
+- aid: neuphonic:neuphonic-voices-api
+  name: Neuphonic Voices API
+  description: The Voices API from Neuphonic — 2 operation(s) for voices.
+  humanURL: https://docs.neuphonic.com/build-group/text-to-speech
+  baseURL: https://api.neuphonic.com
+  tags:
+  - Voices
+  properties:
+  - type: OpenAPI
+    url: openapi/neuphonic-voices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.neuphonic.com/build-group/text-to-speech
 common:
   - type: AgenticAccess
     url: agentic-access/neuphonic-agentic-access.yml
