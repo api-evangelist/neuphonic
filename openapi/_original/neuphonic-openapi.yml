@@ -1,0 +1,614 @@
+openapi: 3.0.3
+info:
+  title: Neuphonic API
+  description: >
+    Neuphonic is an ultra-low-latency voice AI platform providing real-time
+    text-to-speech synthesis, voice cloning, and conversational AI agent
+    management. The API supports SSE streaming, voice management, and agent
+    lifecycle operations. Authentication uses API keys via the X-API-KEY header
+    or api_key query parameter.
+  version: 0.1.0
+  contact:
+    url: https://docs.neuphonic.com/
+servers:
+  - url: https://api.neuphonic.com
+    description: Neuphonic Production API
+
+security:
+  - ApiKeyHeader: []
+  - ApiKeyQuery: []
+
+paths:
+  /ping:
+    get:
+      summary: Ping
+      description: Health check endpoint to verify the API is reachable.
+      operationId: ping_ping_get
+      security: []
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /voices:
+    get:
+      summary: List Voices
+      description: >
+        Retrieves available voices for the text-to-speech (TTS) feature.
+        Returns a list of TTS voices available in the application, including
+        both standard and cloned voices.
+      operationId: tts_endpoint_voices_get
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      voices:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Voice'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    post:
+      summary: Clone Voice
+      description: >
+        Create a cloned voice by uploading an audio sample. Accepts MP3 or WAV
+        files (minimum 6 seconds, under 10MB). Voice cloning is available in
+        English, French, German, and Spanish.
+      operationId: clone_voice_voices_post
+      parameters:
+        - name: voice_name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The desired name for the cloned voice.
+        - name: voice_tags
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated tags associated with the voice.
+        - name: lang_code
+          in: query
+          required: false
+          schema:
+            type: string
+            default: en
+          description: Language code for the cloned voice (e.g., en, fr, de, es).
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - voice_file
+              properties:
+                voice_file:
+                  type: string
+                  format: binary
+                  description: Audio file containing the voice sample (MP3 or WAV).
+      responses:
+        '200':
+          description: Voice cloned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /voices/{voice_id}:
+    patch:
+      summary: Update Voice
+      description: >
+        Update the audio clip or metadata associated with a cloned voice.
+        Requires the voice to belong to the authenticated user.
+      operationId: update_voice_voices__voice_id__patch
+      parameters:
+        - name: voice_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the voice to update.
+        - name: new_voice_name
+          in: query
+          required: false
+          schema:
+            type: string
+          description: New name for the cloned voice.
+        - name: new_voice_tags
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Updated comma-separated tags for the voice.
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                new_voice_file:
+                  type: string
+                  format: binary
+                  nullable: true
+                  description: New audio file to replace the existing voice sample.
+      responses:
+        '200':
+          description: Voice updated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    delete:
+      summary: Delete Cloned Voice
+      description: >
+        Delete a cloned voice from the system. Removes all associated data.
+        The voice must belong to the authenticated user.
+      operationId: delete_cloned_voice_voices__voice_id__delete
+      parameters:
+        - name: voice_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the voice to delete.
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Voice deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  voice_id:
+                    type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /sse/auth:
+    post:
+      summary: Authenticate for SSE
+      description: >
+        Exchange an API key for a JWT token to be used in subsequent SSE
+        requests. Using a JWT token allows faster authentication for subsequent
+        requests.
+      operationId: swap_api_key_for_jwt_token_sse_auth_post
+      parameters:
+        - name: expiration
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 3600
+          description: JWT token expiration time in seconds (default 3600).
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: JWT token issued successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      jwt_token:
+                        type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /sse/speak/{lang_code}:
+    post:
+      summary: SSE Text-to-Speech
+      description: >
+        Generate speech from text using Server-Sent Events (SSE) streaming.
+        Returns a real-time audio stream in PCM format. Supports language
+        selection, voice selection, speed control, and sampling rate
+        configuration. Sub-25ms latency for the first audio chunk.
+      operationId: sse_generator_sse_speak__lang_code__post
+      parameters:
+        - name: lang_code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: >
+            Language code for the speech synthesis (e.g., en, es, de, fr,
+            ur, ja, ko, zh, pt).
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SseRequest'
+      responses:
+        '200':
+          description: >
+            Streaming SSE response with audio data in PCM format.
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /agents:
+    get:
+      summary: List Agents
+      description: List all conversational AI voice agents belonging to the authenticated user.
+      operationId: list_all_agents_agents_get
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      agents:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    post:
+      summary: Create Agent
+      description: >
+        Create a conversational AI voice agent that combines Neuphonic TTS
+        with GPT-4o. Agents support MCP server integration, multilingual
+        operation, and interruption handling.
+      operationId: create_agent_agents_post
+      parameters:
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentCreate'
+      responses:
+        '200':
+          description: Agent created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /agents/{agent_id}:
+    get:
+      summary: Get Agent
+      description: Retrieve all details for a specific agent by its ID.
+      operationId: get_agent_agents__agent_id__get
+      parameters:
+        - name: agent_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the agent.
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Agent'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    delete:
+      summary: Delete Agent
+      description: Delete a specific agent by its ID.
+      operationId: delete_agent_agents__agent_id__delete
+      parameters:
+        - name: agent_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the agent to delete.
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      responses:
+        '200':
+          description: Agent deleted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /agents/{agent_id}/token:
+    post:
+      summary: Get LiveKit Token
+      description: >
+        Get a LiveKit token for a specific agent to establish a real-time
+        communication session.
+      operationId: get_livekit_token_agents__agent_id__token_post
+      parameters:
+        - name: agent_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the agent.
+        - $ref: '#/components/parameters/ApiKeyQuery'
+        - $ref: '#/components/parameters/JwtTokenQuery'
+        - $ref: '#/components/parameters/ApiKeyHeader'
+        - $ref: '#/components/parameters/AuthorizationHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: LiveKit token issued successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key passed via the X-API-KEY request header.
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: API key passed as a query parameter (used for WebSocket connections).
+
+  parameters:
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: API key for authentication.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: API key in the X-API-KEY header.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: Bearer JWT token in the Authorization header.
+
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+
+  schemas:
+    Voice:
+      type: object
+      properties:
+        voice_id:
+          type: string
+          description: Unique identifier for the voice.
+        voice_name:
+          type: string
+          description: Display name of the voice.
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the voice.
+        lang_code:
+          type: string
+          description: Language code for the voice.
+        is_cloned:
+          type: boolean
+          description: Whether this is a user-cloned voice.
+
+    SseRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: The text to synthesize into speech.
+        voice:
+          type: string
+          description: Voice ID or name to use for synthesis.
+        speed:
+          type: number
+          format: float
+          description: Speech speed multiplier (e.g., 1.0 for normal speed).
+        sampling_rate:
+          type: integer
+          description: Audio sampling rate in Hz (e.g., 22050, 44100).
+
+    Agent:
+      type: object
+      properties:
+        agent_id:
+          type: string
+          description: Unique identifier for the agent.
+        name:
+          type: string
+          description: Display name of the agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's behavior.
+        voice:
+          type: string
+          description: Voice ID used by the agent for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent.
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: List of MCP server configurations integrated with this agent.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the agent was created.
+
+    AgentCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name for the new agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's personality and behavior.
+        voice:
+          type: string
+          description: Voice ID to use for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent (e.g., en, es, de).
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: MCP server configurations to integrate with the agent.
+      additionalProperties: true
+
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+
+    ValidationError:
+      type: object
+      required:
+        - loc
+        - msg
+        - type
+      properties:
+        loc:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: integer
+          description: Location of the error in the request.
+        msg:
+          type: string
+          description: Human-readable error message.
+        type:
+          type: string
+          description: Error type identifier.

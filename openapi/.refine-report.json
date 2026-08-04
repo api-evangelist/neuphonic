@@ -1,0 +1,20 @@
+{
+  "provider": "neuphonic",
+  "sources": [
+    "neuphonic-agents-api-openapi.yml",
+    "neuphonic-ping-api-openapi.yml",
+    "neuphonic-sse-api-openapi.yml",
+    "neuphonic-voices-api-openapi.yml"
+  ],
+  "outputs": [
+    "neuphonic-agents-api-openapi.yml",
+    "neuphonic-ping-api-openapi.yml",
+    "neuphonic-sse-api-openapi.yml",
+    "neuphonic-voices-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
