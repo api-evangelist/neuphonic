@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neuphonic Agents Sse API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate for SSE",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neuphonic.com/sse/auth",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "expiration",
+                "value": "",
+                "type": "query",
+                "description": "JWT token expiration time in seconds (default 3600)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "Exchange an API key for a JWT token to be used in subsequent SSE requests. Using a JWT token allows faster authentication for subsequent requests.\n"
+        },
+        {
+          "info": {
+            "name": "SSE Text-to-Speech",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neuphonic.com/sse/speak/:lang_code",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "lang_code",
+                "value": "",
+                "type": "path",
+                "description": "Language code for the speech synthesis (e.g., en, es, de, fr, ur, ja, ko, zh, pt).\n"
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate speech from text using Server-Sent Events (SSE) streaming. Returns a real-time audio stream in PCM format. Supports language selection, voice selection, speed control, and sampling rate configuration. Sub-25ms latency for the first audio chunk.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

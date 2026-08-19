@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neuphonic Agents Voices API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Voices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neuphonic.com/voices",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "Retrieves available voices for the text-to-speech (TTS) feature. Returns a list of TTS voices available in the application, including both standard and cloned voices.\n"
+        },
+        {
+          "info": {
+            "name": "Clone Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neuphonic.com/voices",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_name",
+                "value": "",
+                "type": "query",
+                "description": "The desired name for the cloned voice."
+              },
+              {
+                "name": "voice_tags",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated tags associated with the voice."
+              },
+              {
+                "name": "lang_code",
+                "value": "",
+                "type": "query",
+                "description": "Language code for the cloned voice (e.g., en, fr, de, es)."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "voice_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a cloned voice by uploading an audio sample. Accepts MP3 or WAV files (minimum 6 seconds, under 10MB). Voice cloning is available in English, French, German, and Spanish.\n"
+        },
+        {
+          "info": {
+            "name": "Update Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neuphonic.com/voices/:voice_id",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the voice to update."
+              },
+              {
+                "name": "new_voice_name",
+                "value": "",
+                "type": "query",
+                "description": "New name for the cloned voice."
+              },
+              {
+                "name": "new_voice_tags",
+                "value": "",
+                "type": "query",
+                "description": "Updated comma-separated tags for the voice."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "new_voice_file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update the audio clip or metadata associated with a cloned voice. Requires the voice to belong to the authenticated user.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Cloned Voice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neuphonic.com/voices/:voice_id",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "voice_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the voice to delete."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "Delete a cloned voice from the system. Removes all associated data. The voice must belong to the authenticated user.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

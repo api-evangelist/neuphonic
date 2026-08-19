@@ -1,0 +1,227 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neuphonic Agents API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Agents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neuphonic.com/agents",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "List all conversational AI voice agents belonging to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neuphonic.com/agents",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling.\n"
+        },
+        {
+          "info": {
+            "name": "Get Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neuphonic.com/agents/:agent_id",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the agent."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "Retrieve all details for a specific agent by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete Agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neuphonic.com/agents/:agent_id",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the agent to delete."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ]
+          },
+          "docs": "Delete a specific agent by its ID."
+        },
+        {
+          "info": {
+            "name": "Get LiveKit Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neuphonic.com/agents/:agent_id/token",
+            "headers": [
+              {
+                "name": "X-API-KEY",
+                "value": ""
+              },
+              {
+                "name": "authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "agent_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the agent."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key for authentication."
+              },
+              {
+                "name": "jwt_token",
+                "value": "",
+                "type": "query",
+                "description": "JWT token obtained from /sse/auth for faster authentication."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get a LiveKit token for a specific agent to establish a real-time communication session.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
