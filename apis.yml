@@ -73,6 +73,10 @@ apis:
   tags:
   - Voice Cloning
   - Audio
+  - Machine-Learning
+  tags_raw:
+  - Voice Cloning
+  - Audio
   - Machine Learning
   properties:
   - type: Documentation
@@ -122,6 +126,8 @@ apis:
   humanURL: https://docs.neuphonic.com/build-group/text-to-speech
   baseURL: https://api.neuphonic.com
   tags:
+  - SSE
+  tags_raw:
   - Sse
   properties:
   - type: OpenAPI
