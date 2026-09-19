@@ -153,6 +153,8 @@ apis:
   humanURL: https://docs.neuphonic.com/build-group/text-to-speech
   baseURL: https://api.neuphonic.com
   tags:
+  - Voice
+  tags_raw:
   - Voices
   properties:
   - type: OpenAPI
