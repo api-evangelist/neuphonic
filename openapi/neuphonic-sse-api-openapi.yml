@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Neuphonic Agents Sse API
-  description: 'Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
-
-    '
+  title: Neuphonic Sse API
+  description: Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
   version: 0.1.0
   contact:
     url: https://docs.neuphonic.com/
@@ -19,9 +17,7 @@ paths:
   /sse/auth:
     post:
       summary: Authenticate for SSE
-      description: 'Exchange an API key for a JWT token to be used in subsequent SSE requests. Using a JWT token allows faster authentication for subsequent requests.
-
-        '
+      description: Exchange an API key for a JWT token to be used in subsequent SSE requests. Using a JWT token allows faster authentication for subsequent requests.
       operationId: swap_api_key_for_jwt_token_sse_auth_post
       parameters:
       - name: expiration
@@ -55,9 +51,7 @@ paths:
   /sse/speak/{lang_code}:
     post:
       summary: SSE Text-to-Speech
-      description: 'Generate speech from text using Server-Sent Events (SSE) streaming. Returns a real-time audio stream in PCM format. Supports language selection, voice selection, speed control, and sampling rate configuration. Sub-25ms latency for the first audio chunk.
-
-        '
+      description: Generate speech from text using Server-Sent Events (SSE) streaming. Returns a real-time audio stream in PCM format. Supports language selection, voice selection, speed control, and sampling rate configuration. Sub-25ms latency for the first audio chunk.
       operationId: sse_generator_sse_speak__lang_code__post
       parameters:
       - name: lang_code
@@ -138,39 +132,6 @@ components:
         sampling_rate:
           type: integer
           description: Audio sampling rate in Hz (e.g., 22050, 44100).
-  parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: API key for authentication.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: JWT token obtained from /sse/auth for faster authentication.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: API key in the X-API-KEY header.
   responses:
     ValidationError:
       description: Validation Error
@@ -178,6 +139,43 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

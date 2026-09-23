@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Neuphonic Agents API
-  description: 'Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
-
-    '
+  description: Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.
   version: 0.1.0
   contact:
     url: https://docs.neuphonic.com/
@@ -47,9 +45,7 @@ paths:
       - Agents
     post:
       summary: Create Agent
-      description: 'Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling.
-
-        '
+      description: Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling.
       operationId: create_agent_agents_post
       parameters:
       - $ref: '#/components/parameters/ApiKeyQuery'
@@ -138,9 +134,7 @@ paths:
   /agents/{agent_id}/token:
     post:
       summary: Get LiveKit Token
-      description: 'Get a LiveKit token for a specific agent to establish a real-time communication session.
-
-        '
+      description: Get a LiveKit token for a specific agent to establish a real-time communication session.
       operationId: get_livekit_token_agents__agent_id__token_post
       parameters:
       - name: agent_id
@@ -198,13 +192,6 @@ components:
         type:
           type: string
           description: Error type identifier.
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     AgentCreate:
       type: object
       properties:
@@ -226,6 +213,13 @@ components:
             type: object
           description: MCP server configurations to integrate with the agent.
       additionalProperties: true
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     Agent:
       type: object
       properties:
@@ -253,39 +247,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the agent was created.
-  parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: API key for authentication.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: JWT token obtained from /sse/auth for faster authentication.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: API key in the X-API-KEY header.
   responses:
     ValidationError:
       description: Validation Error
@@ -293,6 +254,43 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

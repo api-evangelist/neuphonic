@@ -1,10 +1,7 @@
 {
   "provider": "neuphonic",
   "sources": [
-    "neuphonic-agents-api-openapi.yml",
-    "neuphonic-ping-api-openapi.yml",
-    "neuphonic-sse-api-openapi.yml",
-    "neuphonic-voices-api-openapi.yml"
+    "_original/neuphonic-openapi.yml"
   ],
   "outputs": [
     "neuphonic-agents-api-openapi.yml",
@@ -15,6 +12,31 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "neuphonic-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "neuphonic-openapi.yml: tagged paths GET /ping -> Ping",
+    "neuphonic-openapi.yml: tagged paths GET /voices -> Voices",
+    "neuphonic-openapi.yml: tagged paths POST /voices -> Voices",
+    "neuphonic-openapi.yml: tagged paths PATCH /voices/{voice_id} -> Voices",
+    "neuphonic-openapi.yml: tagged paths DELETE /voices/{voice_id} -> Voices",
+    "neuphonic-openapi.yml: tagged paths POST /sse/auth -> Sse",
+    "neuphonic-openapi.yml: tagged paths POST /sse/speak/{lang_code} -> Sse",
+    "neuphonic-openapi.yml: tagged paths GET /agents -> Agents",
+    "neuphonic-openapi.yml: tagged paths POST /agents -> Agents",
+    "neuphonic-openapi.yml: tagged paths GET /agents/{agent_id} -> Agents",
+    "neuphonic-openapi.yml: tagged paths DELETE /agents/{agent_id} -> Agents",
+    "neuphonic-openapi.yml: tagged paths POST /agents/{agent_id}/token -> Agents",
+    "neuphonic-openapi.yml: declared missing tag: Agents",
+    "neuphonic-openapi.yml: declared missing tag: Ping",
+    "neuphonic-openapi.yml: declared missing tag: Sse",
+    "neuphonic-openapi.yml: declared missing tag: Voices",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "neuphonic-agents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neuphonic-ping-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neuphonic-sse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neuphonic-voices-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
