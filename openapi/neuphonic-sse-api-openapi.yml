@@ -86,7 +86,69 @@ paths:
       tags:
       - Sse
 components:
+  parameters:
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
   schemas:
+    SseRequest:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: The text to synthesize into speech.
+        voice:
+          type: string
+          description: Voice ID or name to use for synthesis.
+        speed:
+          type: number
+          format: float
+          description: Speech speed multiplier (e.g., 1.0 for normal speed).
+        sampling_rate:
+          type: integer
+          description: Audio sampling rate in Hz (e.g., 22050, 44100).
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       required:
@@ -107,31 +169,6 @@ components:
         type:
           type: string
           description: Error type identifier.
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    SseRequest:
-      type: object
-      required:
-      - text
-      properties:
-        text:
-          type: string
-          description: The text to synthesize into speech.
-        voice:
-          type: string
-          description: Voice ID or name to use for synthesis.
-        speed:
-          type: number
-          format: float
-          description: Speech speed multiplier (e.g., 1.0 for normal speed).
-        sampling_rate:
-          type: integer
-          description: Audio sampling rate in Hz (e.g., 22050, 44100).
   responses:
     ValidationError:
       description: Validation Error
@@ -139,43 +176,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/HTTPValidationError'
-  parameters:
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: JWT token obtained from /sse/auth for faster authentication.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

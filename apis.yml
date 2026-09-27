@@ -86,11 +86,12 @@ apis:
   tags:
   - Voice Cloning
   - Audio
-  - Machine-Learning
+  - Machine Learning
   tags_raw:
   - Voice Cloning
   - Audio
   - Machine Learning
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://docs.neuphonic.com/build-group/voice-cloning
