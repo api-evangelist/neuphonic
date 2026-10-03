@@ -87,15 +87,6 @@ paths:
       - Sse
 components:
   parameters:
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
     AuthorizationHeader:
       name: authorization
       in: header
@@ -123,6 +114,15 @@ components:
         - string
         - 'null'
       description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
   schemas:
     SseRequest:
       type: object

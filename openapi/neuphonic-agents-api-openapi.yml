@@ -172,15 +172,6 @@ paths:
       - Agents
 components:
   parameters:
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
     AuthorizationHeader:
       name: authorization
       in: header
@@ -190,6 +181,15 @@ components:
         - string
         - 'null'
       description: Bearer JWT token in the Authorization header.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
     ApiKeyHeader:
       name: X-API-KEY
       in: header
@@ -209,54 +209,6 @@ components:
         - 'null'
       description: JWT token obtained from /sse/auth for faster authentication.
   schemas:
-    AgentCreate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Display name for the new agent.
-        prompt:
-          type: string
-          description: System prompt defining the agent's personality and behavior.
-        voice:
-          type: string
-          description: Voice ID to use for speech synthesis.
-        lang_code:
-          type: string
-          description: Language code for the agent (e.g., en, es, de).
-        mcp_servers:
-          type: array
-          items:
-            type: object
-          description: MCP server configurations to integrate with the agent.
-      additionalProperties: true
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    ValidationError:
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      properties:
-        loc:
-          type: array
-          items:
-            oneOf:
-            - type: string
-            - type: integer
-          description: Location of the error in the request.
-        msg:
-          type: string
-          description: Human-readable error message.
-        type:
-          type: string
-          description: Error type identifier.
     Agent:
       type: object
       properties:
@@ -284,6 +236,54 @@ components:
           type: string
           format: date-time
           description: Timestamp when the agent was created.
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      properties:
+        loc:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - type: integer
+          description: Location of the error in the request.
+        msg:
+          type: string
+          description: Human-readable error message.
+        type:
+          type: string
+          description: Error type identifier.
+    AgentCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Display name for the new agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's personality and behavior.
+        voice:
+          type: string
+          description: Voice ID to use for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent (e.g., en, es, de).
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: MCP server configurations to integrate with the agent.
+      additionalProperties: true
   responses:
     ValidationError:
       description: Validation Error

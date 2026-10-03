@@ -184,6 +184,43 @@ paths:
       tags:
       - Voices
 components:
+  parameters:
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
   schemas:
     Voice:
       type: object
@@ -232,43 +269,6 @@ components:
         type:
           type: string
           description: Error type identifier.
-  parameters:
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: JWT token obtained from /sse/auth for faster authentication.
   responses:
     ValidationError:
       description: Validation Error
