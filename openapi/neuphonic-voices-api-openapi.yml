@@ -184,44 +184,21 @@ paths:
       tags:
       - Voices
 components:
-  parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: JWT token obtained from /sse/auth for faster authentication.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     Voice:
       type: object
       properties:
@@ -242,13 +219,6 @@ components:
         is_cloned:
           type: boolean
           description: Whether this is a user-cloned voice.
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       required:
@@ -269,13 +239,43 @@ components:
         type:
           type: string
           description: Error type identifier.
-  responses:
-    ValidationError:
-      description: Validation Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

@@ -171,71 +171,14 @@ paths:
       tags:
       - Agents
 components:
-  parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: JWT token obtained from /sse/auth for faster authentication.
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
-    Agent:
-      type: object
-      properties:
-        agent_id:
-          type: string
-          description: Unique identifier for the agent.
-        name:
-          type: string
-          description: Display name of the agent.
-        prompt:
-          type: string
-          description: System prompt defining the agent's behavior.
-        voice:
-          type: string
-          description: Voice ID used by the agent for speech synthesis.
-        lang_code:
-          type: string
-          description: Language code for the agent.
-        mcp_servers:
-          type: array
-          items:
-            type: object
-          description: List of MCP server configurations integrated with this agent.
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the agent was created.
     HTTPValidationError:
       type: object
       properties:
@@ -263,6 +206,33 @@ components:
         type:
           type: string
           description: Error type identifier.
+    Agent:
+      type: object
+      properties:
+        agent_id:
+          type: string
+          description: Unique identifier for the agent.
+        name:
+          type: string
+          description: Display name of the agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's behavior.
+        voice:
+          type: string
+          description: Voice ID used by the agent for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent.
+        mcp_servers:
+          type: array
+          items:
+            type: object
+          description: List of MCP server configurations integrated with this agent.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the agent was created.
     AgentCreate:
       type: object
       properties:
@@ -284,13 +254,43 @@ components:
             type: object
           description: MCP server configurations to integrate with the agent.
       additionalProperties: true
-  responses:
-    ValidationError:
-      description: Validation Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
