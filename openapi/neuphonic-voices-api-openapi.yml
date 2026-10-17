@@ -184,21 +184,7 @@ paths:
       tags:
       - Voices
 components:
-  responses:
-    ValidationError:
-      description: Validation Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     Voice:
       type: object
       properties:
@@ -239,25 +225,14 @@ components:
         type:
           type: string
           description: Error type identifier.
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
     ApiKeyQuery:
       name: api_key
       in: query
@@ -276,6 +251,31 @@ components:
         - string
         - 'null'
       description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

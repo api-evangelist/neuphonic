@@ -171,21 +171,65 @@ paths:
       tags:
       - Agents
 components:
-  responses:
-    ValidationError:
-      description: Validation Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    ApiKeyQuery:
+      name: api_key
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key for authentication.
+    JwtTokenQuery:
+      name: jwt_token
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: JWT token obtained from /sse/auth for faster authentication.
+    ApiKeyHeader:
+      name: X-API-KEY
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: API key in the X-API-KEY header.
+    AuthorizationHeader:
+      name: authorization
+      in: header
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Bearer JWT token in the Authorization header.
   schemas:
-    HTTPValidationError:
+    AgentCreate:
       type: object
       properties:
-        detail:
+        name:
+          type: string
+          description: Display name for the new agent.
+        prompt:
+          type: string
+          description: System prompt defining the agent's personality and behavior.
+        voice:
+          type: string
+          description: Voice ID to use for speech synthesis.
+        lang_code:
+          type: string
+          description: Language code for the agent (e.g., en, es, de).
+        mcp_servers:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: object
+          description: MCP server configurations to integrate with the agent.
+      additionalProperties: true
     ValidationError:
       type: object
       required:
@@ -206,6 +250,13 @@ components:
         type:
           type: string
           description: Error type identifier.
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     Agent:
       type: object
       properties:
@@ -233,64 +284,13 @@ components:
           type: string
           format: date-time
           description: Timestamp when the agent was created.
-    AgentCreate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Display name for the new agent.
-        prompt:
-          type: string
-          description: System prompt defining the agent's personality and behavior.
-        voice:
-          type: string
-          description: Voice ID to use for speech synthesis.
-        lang_code:
-          type: string
-          description: Language code for the agent (e.g., en, es, de).
-        mcp_servers:
-          type: array
-          items:
-            type: object
-          description: MCP server configurations to integrate with the agent.
-      additionalProperties: true
-  parameters:
-    AuthorizationHeader:
-      name: authorization
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Bearer JWT token in the Authorization header.
-    ApiKeyHeader:
-      name: X-API-KEY
-      in: header
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key in the X-API-KEY header.
-    ApiKeyQuery:
-      name: api_key
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: API key for authentication.
-    JwtTokenQuery:
-      name: jwt_token
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: JWT token obtained from /sse/auth for faster authentication.
+  responses:
+    ValidationError:
+      description: Validation Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
