@@ -53,8 +53,8 @@ edges:
     roles:
     - tts
     vendor_domain: neuphonic.com
-    hub_org_models_in_top_1000: 14
-    hub_org_downloads: 19958
+    hub_org_models_in_top_1000: 12
+    hub_org_downloads: 19408
   matched_by: verified-domain-table
   detected_by: sweep-voice-ai.py
   first_seen: '2026-10-15'
