@@ -163,6 +163,8 @@ apis:
   - type: Documentation
     url: https://docs.neuphonic.com/build-group/text-to-speech
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/neuphonic/overview
   - url: https://www.neuphonic.com/blog
     type: Blog
   - type: AgenticAccess
