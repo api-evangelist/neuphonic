@@ -1,233 +1,821 @@
 {
+  "info": {
+    "_postman_id": "184c2420-f76b-4d34-8c3c-a3054e1d4530",
+    "name": "Neuphonic Agents API",
+    "description": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:53:13.000Z",
+    "updatedAt": "2026-10-21T19:53:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-184c2420-f76b-4d34-8c3c-a3054e1d4530"
+  },
   "item": [
     {
-      "id": "a11a47e2-53fc-4473-ac23-f2a9920690e6",
-      "name": "Agents",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "agents",
       "item": [
         {
-          "id": "53539810-9765-4bda-8949-5dc3dc4e2673",
-          "name": "List Agents",
-          "request": {
-            "name": "List Agents",
-            "description": {
-              "content": "List all conversational AI voice agents belonging to the authenticated user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "agents"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{agent_id}",
+          "item": [
+            {
+              "name": "token",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
+                  "name": "Get LiveKit Token",
+                  "id": "1bd8aa91-d14c-40c8-83fe-9c994c50db8e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"aliqua_b3\": 93893614\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/agents/:agent_id/token?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agents",
+                        ":agent_id",
+                        "token"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "3a13f5dd-4a68-4ab7-985f-707fb791faf1",
+                          "key": "agent_id",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the agent."
+                        }
+                      ]
+                    },
+                    "description": "Get a LiveKit token for a specific agent to establish a real-time communication session."
+                  },
+                  "response": [
+                    {
+                      "id": "4174e2c1-bc0d-4e50-ba3c-9f7d11fdd2f7",
+                      "name": "LiveKit token issued successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "API key in the X-API-KEY header.",
+                            "key": "X-API-KEY",
+                            "value": "<string,null>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"aliqua_b3\": 93893614\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/agents/:agent_id/token?api_key=<string,null>&jwt_token=<string,null>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "agents",
+                            ":agent_id",
+                            "token"
+                          ],
+                          "query": [
+                            {
+                              "description": "API key for authentication.",
+                              "key": "api_key",
+                              "value": "<string,null>"
+                            },
+                            {
+                              "description": "JWT token obtained from /sse/auth for faster authentication.",
+                              "key": "jwt_token",
+                              "value": "<string,null>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "agent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"token\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-21T19:53:14.000Z",
+                      "updatedAt": "2026-10-21T19:53:14.000Z",
+                      "uid": "35240-4174e2c1-bc0d-4e50-ba3c-9f7d11fdd2f7"
+                    },
+                    {
+                      "id": "816f3499-13e8-4096-8f36-33c7baf2d1ef",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "API key in the X-API-KEY header.",
+                            "key": "X-API-KEY",
+                            "value": "<string,null>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"aliqua_b3\": 93893614\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/agents/:agent_id/token?api_key=<string,null>&jwt_token=<string,null>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "agents",
+                            ":agent_id",
+                            "token"
+                          ],
+                          "query": [
+                            {
+                              "description": "API key for authentication.",
+                              "key": "api_key",
+                              "value": "<string,null>"
+                            },
+                            {
+                              "description": "JWT token obtained from /sse/auth for faster authentication.",
+                              "key": "jwt_token",
+                              "value": "<string,null>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "agent_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T19:53:14.000Z",
+                      "updatedAt": "2026-10-21T19:53:14.000Z",
+                      "uid": "35240-816f3499-13e8-4096-8f36-33c7baf2d1ef"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T19:53:14.000Z",
+                  "updatedAt": "2026-10-21T19:53:14.000Z",
+                  "uid": "35240-1bd8aa91-d14c-40c8-83fe-9c994c50db8e"
                 }
               ],
-              "variable": []
+              "id": "647bb561-49c2-4d0a-a8d3-c32148d0cbe3",
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-647bb561-49c2-4d0a-a8d3-c32148d0cbe3"
             },
+            {
+              "name": "Get Agent",
+              "id": "bd67549f-8a23-40ef-be19-934198b97ab7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agents",
+                    ":agent_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "7647a235-9fac-41ae-9e99-c2ea51db0b3d",
+                      "key": "agent_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the agent."
+                    }
+                  ]
+                },
+                "description": "Retrieve all details for a specific agent by its ID."
+              },
+              "response": [
+                {
+                  "id": "0894fc6d-8e00-4ec4-a15b-938d7d76a527",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agents",
+                        ":agent_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "agent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"agent_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"prompt\": \"<string>\",\n    \"voice\": \"<string>\",\n    \"lang_code\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-10-21T19:53:14.000Z",
+                  "updatedAt": "2026-10-21T19:53:14.000Z",
+                  "uid": "35240-0894fc6d-8e00-4ec4-a15b-938d7d76a527"
+                },
+                {
+                  "id": "e73f75cc-aa5b-4205-a050-510450209b87",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agents",
+                        ":agent_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "agent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T19:53:14.000Z",
+                  "updatedAt": "2026-10-21T19:53:14.000Z",
+                  "uid": "35240-e73f75cc-aa5b-4205-a050-510450209b87"
+                }
+              ],
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-bd67549f-8a23-40ef-be19-934198b97ab7"
+            },
+            {
+              "name": "Delete Agent",
+              "id": "b8fa2c76-a7f0-414c-88a3-a0d402498649",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agents",
+                    ":agent_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "1546b807-a3a6-496c-9095-1c76de4bc9ac",
+                      "key": "agent_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the agent to delete."
+                    }
+                  ]
+                },
+                "description": "Delete a specific agent by its ID."
+              },
+              "response": [
+                {
+                  "id": "16132e50-55af-47e9-93da-02473f605ae0",
+                  "name": "Agent deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agents",
+                        ":agent_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "agent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:53:14.000Z",
+                  "updatedAt": "2026-10-21T19:53:14.000Z",
+                  "uid": "35240-16132e50-55af-47e9-93da-02473f605ae0"
+                },
+                {
+                  "id": "6943a1fe-5981-4036-9e82-aaea18b3ae7a",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agents/:agent_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agents",
+                        ":agent_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "agent_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T19:53:14.000Z",
+                  "updatedAt": "2026-10-21T19:53:14.000Z",
+                  "uid": "35240-6943a1fe-5981-4036-9e82-aaea18b3ae7a"
+                }
+              ],
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-b8fa2c76-a7f0-414c-88a3-a0d402498649"
+            }
+          ],
+          "id": "d37943df-6366-437e-9e43-a7d06a81023d",
+          "createdAt": "2026-10-21T19:53:14.000Z",
+          "updatedAt": "2026-10-21T19:53:14.000Z",
+          "uid": "35240-d37943df-6366-437e-9e43-a7d06a81023d"
+        },
+        {
+          "name": "List Agents",
+          "id": "a045bd94-67eb-48c8-8ec6-69554e2cc15a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "API key in the X-API-KEY header.",
                 "key": "X-API-KEY",
-                "value": "<string>"
+                "value": "<string,null>"
               },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fc1ea7ad-124a-466f-95ce-c7501bec892f",
-              "name": "Successful Response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"agents\": [\n      {\n        \"agent_id\": \"string\",\n        \"name\": \"string\",\n        \"prompt\": \"string\",\n        \"voice\": \"string\",\n        \"lang_code\": \"string\",\n        \"created_at\": \"1978-06-19T07:46:54.011Z\"\n      },\n      {\n        \"agent_id\": \"string\",\n        \"name\": \"string\",\n        \"prompt\": \"string\",\n        \"voice\": \"string\",\n        \"lang_code\": \"string\",\n        \"created_at\": \"1973-03-30T19:55:30.103Z\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "88dd65d4-c6ac-4a6c-9a54-c1cf6b90e167",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7e5bf6b5-44e1-409a-ac21-9ccb259968eb",
-          "name": "Create Agent",
-          "request": {
-            "name": "Create Agent",
-            "description": {
-              "content": "Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling.\n",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "agents"
-              ],
+              "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
               "host": [
                 "{{baseUrl}}"
               ],
+              "path": [
+                "agents"
+              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "API key for authentication.",
                   "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
+                  "value": "<string,null>"
                 },
                 {
-                  "disabled": false,
+                  "description": "JWT token obtained from /sse/auth for faster authentication.",
                   "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
+                  "value": "<string,null>"
+                }
+              ]
+            },
+            "description": "List all conversational AI voice agents belonging to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "5e953293-9824-4ee1-b2d8-46405356334d",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agents"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
                 }
               ],
-              "variable": []
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"agents\": [\n      {\n        \"agent_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"voice\": \"<string>\",\n        \"lang_code\": \"<string>\",\n        \"created_at\": \"<dateTime>\"\n      },\n      {\n        \"agent_id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"prompt\": \"<string>\",\n        \"voice\": \"<string>\",\n        \"lang_code\": \"<string>\",\n        \"created_at\": \"<dateTime>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-5e953293-9824-4ee1-b2d8-46405356334d"
             },
+            {
+              "id": "1f91cff4-ad01-4cff-9a19-f10734b3ddd0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agents"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-1f91cff4-ad01-4cff-9a19-f10734b3ddd0"
+            }
+          ],
+          "createdAt": "2026-10-21T19:53:14.000Z",
+          "updatedAt": "2026-10-21T19:53:14.000Z",
+          "uid": "35240-a045bd94-67eb-48c8-8ec6-69554e2cc15a"
+        },
+        {
+          "name": "Create Agent",
+          "id": "d7cfe3d3-7886-44fe-a165-19588ef35e33",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "API key in the X-API-KEY header.",
                 "key": "X-API-KEY",
-                "value": "<string>"
+                "value": "<string,null>"
               },
               {
                 "key": "Content-Type",
@@ -238,838 +826,196 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\",\n  \"mcp_servers\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"key_0\": false,\n  \"key_1\": 8580.828818648424,\n  \"key_2\": \"string\"\n}",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "agents"
+              ],
+              "query": [
+                {
+                  "description": "API key for authentication.",
+                  "key": "api_key",
+                  "value": "<string,null>"
+                },
+                {
+                  "description": "JWT token obtained from /sse/auth for faster authentication.",
+                  "key": "jwt_token",
+                  "value": "<string,null>"
+                }
+              ]
+            },
+            "description": "Create a conversational AI voice agent that combines Neuphonic TTS with GPT-4o. Agents support MCP server integration, multilingual operation, and interruption handling."
           },
           "response": [
             {
-              "id": "45af0624-299a-4e95-bbec-dbee95d5ff2b",
+              "id": "f3f43ca5-4d00-46e8-8c89-6901b63d9b42",
               "name": "Agent created successfully.",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "agents"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "API key for authentication.",
                       "key": "api_key",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     },
                     {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
                       "key": "jwt_token",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\",\n  \"mcp_servers\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"agent_id\": \"string\",\n    \"name\": \"string\",\n    \"prompt\": \"string\",\n    \"voice\": \"string\",\n    \"lang_code\": \"string\",\n    \"created_at\": \"2013-06-07T04:37:59.721Z\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"agent_id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"prompt\": \"<string>\",\n    \"voice\": \"<string>\",\n    \"lang_code\": \"<string>\",\n    \"created_at\": \"<dateTime>\"\n  }\n}",
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-f3f43ca5-4d00-46e8-8c89-6901b63d9b42"
             },
             {
-              "id": "b447202f-78ef-461d-84ba-7a50e5b224f7",
+              "id": "f4501064-7581-469b-8940-845bc6cda791",
               "name": "Validation Error",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/agents?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "agents"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "API key for authentication.",
                       "key": "api_key",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     },
                     {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
                       "key": "jwt_token",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"prompt\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"lang_code\": \"<string>\",\n  \"mcp_servers\": [\n    \"<object>\",\n    \"<object>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T19:53:14.000Z",
+              "updatedAt": "2026-10-21T19:53:14.000Z",
+              "uid": "35240-f4501064-7581-469b-8940-845bc6cda791"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ad1694ff-6b23-4de2-abe5-58509090ab11",
-          "name": "Get Agent",
-          "request": {
-            "name": "Get Agent",
-            "description": {
-              "content": "Retrieve all details for a specific agent by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "agents",
-                ":agent_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "agent_id",
-                  "description": "(Required) The unique identifier of the agent."
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f7e92eb1-893b-46bc-807a-349084888417",
-              "name": "Successful Response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"agent_id\": \"string\",\n    \"name\": \"string\",\n    \"prompt\": \"string\",\n    \"voice\": \"string\",\n    \"lang_code\": \"string\",\n    \"created_at\": \"2013-06-07T04:37:59.721Z\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1a830c9a-8c48-4b5b-b4cf-65e80dd9fcb9",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4dc4a851-74c9-4e91-80c2-bf1b04a83b93",
-          "name": "Delete Agent",
-          "request": {
-            "name": "Delete Agent",
-            "description": {
-              "content": "Delete a specific agent by its ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "agents",
-                ":agent_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "agent_id",
-                  "description": "(Required) The unique identifier of the agent to delete."
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9d6452da-8089-4e85-9bad-0cd6bae2e8cb",
-              "name": "Agent deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent to delete."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cdbd809d-9995-44f8-99a2-dac96af735f4",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent to delete."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ac3e7913-2231-4ce8-8568-86924e126863",
-          "name": "Get LiveKit Token",
-          "request": {
-            "name": "Get LiveKit Token",
-            "description": {
-              "content": "Get a LiveKit token for a specific agent to establish a real-time communication session.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "agents",
-                ":agent_id",
-                "token"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "agent_id",
-                  "description": "(Required) The unique identifier of the agent."
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 2250\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "32274b2a-c2b7-49f5-b8c8-e8f076530268",
-              "name": "LiveKit token issued successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id",
-                    "token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "55715730-37fa-455a-ab57-585848fa9f50",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "agents",
-                    ":agent_id",
-                    "token"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "agent_id",
-                      "description": "(Required) The unique identifier of the agent."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:53:14.000Z",
+          "updatedAt": "2026-10-21T19:53:14.000Z",
+          "uid": "35240-d7cfe3d3-7886-44fe-a165-19588ef35e33"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.neuphonic.com",
-      "key": "baseUrl"
+      "id": "1e677504-1910-478a-bae8-361b427b33bf",
+      "createdAt": "2026-10-21T19:53:14.000Z",
+      "updatedAt": "2026-10-21T19:53:14.000Z",
+      "uid": "35240-1e677504-1910-478a-bae8-361b427b33bf"
     }
   ],
   "auth": {
@@ -1077,25 +1023,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-KEY"
+        "value": "X-API-KEY",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5526d23c-dacf-4d5e-ad10-8944277bfb84",
-    "name": "Neuphonic Agents API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neuphonic.com"
     }
-  }
+  ]
 }

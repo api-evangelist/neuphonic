@@ -1,463 +1,466 @@
 {
+  "info": {
+    "_postman_id": "2cef5da7-da43-4b6e-b2be-80f704802277",
+    "name": "Neuphonic Sse API",
+    "description": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:53:27.000Z",
+    "updatedAt": "2026-10-21T19:53:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2cef5da7-da43-4b6e-b2be-80f704802277"
+  },
   "item": [
     {
-      "id": "65a6e192-188d-4120-8e7e-9896ca5ce12c",
-      "name": "Sse",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "sse",
       "item": [
         {
-          "id": "257fdc8d-246b-4f42-a7dc-874176e10032",
-          "name": "Authenticate for SSE",
-          "request": {
-            "name": "Authenticate for SSE",
-            "description": {
-              "content": "Exchange an API key for a JWT token to be used in subsequent SSE requests. Using a JWT token allows faster authentication for subsequent requests.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sse",
-                "auth"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "expiration",
-                  "value": "3600",
-                  "description": "JWT token expiration time in seconds (default 3600)."
-                },
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null
-          },
-          "response": [
+          "name": "auth",
+          "item": [
             {
-              "id": "400d4869-ec6c-4fbf-a8cd-d54b86b6a107",
-              "name": "JWT token issued successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sse",
-                    "auth"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "expiration",
-                      "value": "3600"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Authenticate for SSE",
+              "id": "9adaa1f5-f154-4dc5-bd11-d0a468000420",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "API key in the X-API-KEY header.",
                     "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
+                    "value": "<string,null>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"jwt_token\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6741b581-1ab9-4e79-b835-73c6793b8b9a",
-              "name": "Validation Error",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/sse/auth?expiration=3600&api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "sse",
                     "auth"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "JWT token expiration time in seconds (default 3600).",
                       "key": "expiration",
                       "value": "3600"
                     },
                     {
+                      "description": "API key for authentication.",
                       "key": "api_key",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     },
                     {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
                       "key": "jwt_token",
-                      "value": "<string>"
+                      "value": "<string,null>"
+                    }
+                  ]
+                },
+                "description": "Exchange an API key for a JWT token to be used in subsequent SSE requests. Using a JWT token allows faster authentication for subsequent requests."
+              },
+              "response": [
+                {
+                  "id": "61539b57-dc88-475a-90a3-14c4872c003d",
+                  "name": "JWT token issued successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sse/auth?expiration=3600&api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sse",
+                        "auth"
+                      ],
+                      "query": [
+                        {
+                          "description": "JWT token expiration time in seconds (default 3600).",
+                          "key": "expiration",
+                          "value": "3600"
+                        },
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"jwt_token\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T19:53:28.000Z",
+                  "updatedAt": "2026-10-21T19:53:28.000Z",
+                  "uid": "35240-61539b57-dc88-475a-90a3-14c4872c003d"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "5c40664f-87e9-46a5-8713-3bfe6b48ac5e",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sse/auth?expiration=3600&api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sse",
+                        "auth"
+                      ],
+                      "query": [
+                        {
+                          "description": "JWT token expiration time in seconds (default 3600).",
+                          "key": "expiration",
+                          "value": "3600"
+                        },
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T19:53:28.000Z",
+                  "updatedAt": "2026-10-21T19:53:28.000Z",
+                  "uid": "35240-5c40664f-87e9-46a5-8713-3bfe6b48ac5e"
                 }
               ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T19:53:28.000Z",
+              "updatedAt": "2026-10-21T19:53:28.000Z",
+              "uid": "35240-9adaa1f5-f154-4dc5-bd11-d0a468000420"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2c505880-f716-4e47-a169-811530509a81",
+          "createdAt": "2026-10-21T19:53:28.000Z",
+          "updatedAt": "2026-10-21T19:53:28.000Z",
+          "uid": "35240-2c505880-f716-4e47-a169-811530509a81"
         },
         {
-          "id": "1c629e02-081f-41f4-8251-394bf3067815",
-          "name": "SSE Text-to-Speech",
-          "request": {
-            "name": "SSE Text-to-Speech",
-            "description": {
-              "content": "Generate speech from text using Server-Sent Events (SSE) streaming. Returns a real-time audio stream in PCM format. Supports language selection, voice selection, speed control, and sampling rate configuration. Sub-25ms latency for the first audio chunk.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sse",
-                "speak",
-                ":lang_code"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "lang_code",
-                  "description": "(Required) Language code for the speech synthesis (e.g., en, es, de, fr, ur, ja, ko, zh, pt).\n"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "text/event-stream"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "speak",
+          "item": [
             {
-              "id": "e641cd0f-d236-402c-9572-d03c10125cba",
-              "name": "Streaming SSE response with audio data in PCM format.\n",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sse",
-                    "speak",
-                    ":lang_code"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "lang_code",
-                      "description": "(Required) Language code for the speech synthesis (e.g., en, es, de, fr, ur, ja, ko, zh, pt).\n"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "text/event-stream"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{lang_code}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/event-stream"
+                  "name": "SSE Text-to-Speech",
+                  "id": "3a59cfb9-b6d0-435f-b2fc-10df18839a36",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "text/event-stream"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sse/speak/:lang_code?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sse",
+                        "speak",
+                        ":lang_code"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a4c295a4-5ed7-4bdb-9200-da008d981e75",
+                          "key": "lang_code",
+                          "value": "<string>",
+                          "description": "(Required) Language code for the speech synthesis (e.g., en, es, de, fr, ur, ja, ko, zh, pt).\n"
+                        }
+                      ]
+                    },
+                    "description": "Generate speech from text using Server-Sent Events (SSE) streaming. Returns a real-time audio stream in PCM format. Supports language selection, voice selection, speed control, and sampling rate configuration. Sub-25ms latency for the first audio chunk."
+                  },
+                  "response": [
+                    {
+                      "id": "fded752a-5c28-4830-bc62-c1149273d1c6",
+                      "name": "Streaming SSE response with audio data in PCM format.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "API key in the X-API-KEY header.",
+                            "key": "X-API-KEY",
+                            "value": "<string,null>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/event-stream"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sse/speak/:lang_code?api_key=<string,null>&jwt_token=<string,null>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sse",
+                            "speak",
+                            ":lang_code"
+                          ],
+                          "query": [
+                            {
+                              "description": "API key for authentication.",
+                              "key": "api_key",
+                              "value": "<string,null>"
+                            },
+                            {
+                              "description": "JWT token obtained from /sse/auth for faster authentication.",
+                              "key": "jwt_token",
+                              "value": "<string,null>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "lang_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/event-stream"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-10-21T19:53:28.000Z",
+                      "updatedAt": "2026-10-21T19:53:28.000Z",
+                      "uid": "35240-fded752a-5c28-4830-bc62-c1149273d1c6"
+                    },
+                    {
+                      "id": "c97e9cf9-bf17-45f5-b0d7-62bcbc2bac74",
+                      "name": "Validation Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "API key in the X-API-KEY header.",
+                            "key": "X-API-KEY",
+                            "value": "<string,null>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-KEY",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sse/speak/:lang_code?api_key=<string,null>&jwt_token=<string,null>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sse",
+                            "speak",
+                            ":lang_code"
+                          ],
+                          "query": [
+                            {
+                              "description": "API key for authentication.",
+                              "key": "api_key",
+                              "value": "<string,null>"
+                            },
+                            {
+                              "description": "JWT token obtained from /sse/auth for faster authentication.",
+                              "key": "jwt_token",
+                              "value": "<string,null>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "lang_code"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T19:53:28.000Z",
+                      "updatedAt": "2026-10-21T19:53:28.000Z",
+                      "uid": "35240-c97e9cf9-bf17-45f5-b0d7-62bcbc2bac74"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T19:53:28.000Z",
+                  "updatedAt": "2026-10-21T19:53:28.000Z",
+                  "uid": "35240-3a59cfb9-b6d0-435f-b2fc-10df18839a36"
                 }
               ],
-              "body": "string",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "5ef0960e-9078-4dca-aeab-672ecb762a2b",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sse",
-                    "speak",
-                    ":lang_code"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "lang_code",
-                      "description": "(Required) Language code for the speech synthesis (e.g., en, es, de, fr, ur, ja, ko, zh, pt).\n"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"text\": \"<string>\",\n  \"voice\": \"<string>\",\n  \"speed\": \"<float>\",\n  \"sampling_rate\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fdf1295e-9759-44d4-a9d3-19a002259424",
+              "createdAt": "2026-10-21T19:53:28.000Z",
+              "updatedAt": "2026-10-21T19:53:28.000Z",
+              "uid": "35240-fdf1295e-9759-44d4-a9d3-19a002259424"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "33626b9f-bb07-4902-8cfa-0f9d16986520",
+          "createdAt": "2026-10-21T19:53:28.000Z",
+          "updatedAt": "2026-10-21T19:53:28.000Z",
+          "uid": "35240-33626b9f-bb07-4902-8cfa-0f9d16986520"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.neuphonic.com",
-      "key": "baseUrl"
+      "id": "7536b403-8cc3-44fa-85c3-053398cd3f9a",
+      "createdAt": "2026-10-21T19:53:28.000Z",
+      "updatedAt": "2026-10-21T19:53:28.000Z",
+      "uid": "35240-7536b403-8cc3-44fa-85c3-053398cd3f9a"
     }
   ],
   "auth": {
@@ -465,25 +468,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-KEY"
+        "value": "X-API-KEY",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4f75d200-47e9-4b00-8ba6-dab6dc2de854",
-    "name": "Neuphonic Agents Sse API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neuphonic.com"
     }
-  }
+  ]
 }

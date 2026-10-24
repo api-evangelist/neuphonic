@@ -1,955 +1,901 @@
 {
+  "info": {
+    "_postman_id": "bdb9ceb2-3817-4199-b486-fc90991d188b",
+    "name": "Neuphonic Voices API",
+    "description": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:53:34.000Z",
+    "updatedAt": "2026-10-21T19:53:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bdb9ceb2-3817-4199-b486-fc90991d188b"
+  },
   "item": [
     {
-      "id": "908cdafa-45fc-4520-8345-32a8cf0c7321",
-      "name": "Voices",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "voices",
       "item": [
         {
-          "id": "feb6d9a1-724d-4541-abdd-a0baf613274c",
-          "name": "List Voices",
-          "request": {
-            "name": "List Voices",
-            "description": {
-              "content": "Retrieves available voices for the text-to-speech (TTS) feature. Returns a list of TTS voices available in the application, including both standard and cloned voices.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "voices"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{voice_id}",
+          "item": [
+            {
+              "name": "Update Voice",
+              "id": "ddde2fd3-5573-40b0-b007-2affe5192b81",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "New audio file to replace the existing voice sample.",
+                      "key": "new_voice_file",
+                      "value": "<string,null-binary>",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/voices/:voice_id?new_voice_name=<string>&new_voice_tags=<string>&api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voices",
+                    ":voice_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "New name for the cloned voice.",
+                      "key": "new_voice_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Updated comma-separated tags for the voice.",
+                      "key": "new_voice_tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "0b9bf210-0b77-4217-a322-a1657eb59c18",
+                      "key": "voice_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the voice to update."
+                    }
+                  ]
+                },
+                "description": "Update the audio clip or metadata associated with a cloned voice. Requires the voice to belong to the authenticated user."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
+                  "id": "7e435973-22ca-49df-bcf1-99db4ea8d595",
+                  "name": "Voice updated successfully.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "New audio file to replace the existing voice sample.",
+                          "key": "new_voice_file",
+                          "value": "<string,null-binary>",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/voices/:voice_id?new_voice_name=<string>&new_voice_tags=<string>&api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voices",
+                        ":voice_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "New name for the cloned voice.",
+                          "key": "new_voice_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Updated comma-separated tags for the voice.",
+                          "key": "new_voice_tags",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "voice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:53:35.000Z",
+                  "updatedAt": "2026-10-21T19:53:35.000Z",
+                  "uid": "35240-7e435973-22ca-49df-bcf1-99db4ea8d595"
                 },
                 {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
+                  "id": "2e0a40ed-ff93-4824-a775-93e245a9ae8d",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "New audio file to replace the existing voice sample.",
+                          "key": "new_voice_file",
+                          "value": "<string,null-binary>",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/voices/:voice_id?new_voice_name=<string>&new_voice_tags=<string>&api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voices",
+                        ":voice_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "New name for the cloned voice.",
+                          "key": "new_voice_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Updated comma-separated tags for the voice.",
+                          "key": "new_voice_tags",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "voice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T19:53:35.000Z",
+                  "updatedAt": "2026-10-21T19:53:35.000Z",
+                  "uid": "35240-2e0a40ed-ff93-4824-a775-93e245a9ae8d"
                 }
               ],
-              "variable": []
+              "createdAt": "2026-10-21T19:53:34.000Z",
+              "updatedAt": "2026-10-21T19:53:34.000Z",
+              "uid": "35240-ddde2fd3-5573-40b0-b007-2affe5192b81"
             },
+            {
+              "name": "Delete Cloned Voice",
+              "id": "9194fc07-f2ef-463d-9c48-ab9c9fbf7574",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/voices/:voice_id?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voices",
+                    ":voice_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "4172753e-e894-42ac-9ffd-642bb6a1dc68",
+                      "key": "voice_id",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the voice to delete."
+                    }
+                  ]
+                },
+                "description": "Delete a cloned voice from the system. Removes all associated data. The voice must belong to the authenticated user."
+              },
+              "response": [
+                {
+                  "id": "8d82b312-6013-430b-a74c-e758e35edcd6",
+                  "name": "Voice deleted successfully.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/voices/:voice_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voices",
+                        ":voice_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "voice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"voice_id\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T19:53:35.000Z",
+                  "updatedAt": "2026-10-21T19:53:35.000Z",
+                  "uid": "35240-8d82b312-6013-430b-a74c-e758e35edcd6"
+                },
+                {
+                  "id": "56fc7318-94dd-4801-9506-b3ae3a8f5a77",
+                  "name": "Validation Error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "API key in the X-API-KEY header.",
+                        "key": "X-API-KEY",
+                        "value": "<string,null>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-KEY",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/voices/:voice_id?api_key=<string,null>&jwt_token=<string,null>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "voices",
+                        ":voice_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "API key for authentication.",
+                          "key": "api_key",
+                          "value": "<string,null>"
+                        },
+                        {
+                          "description": "JWT token obtained from /sse/auth for faster authentication.",
+                          "key": "jwt_token",
+                          "value": "<string,null>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "voice_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T19:53:35.000Z",
+                  "updatedAt": "2026-10-21T19:53:35.000Z",
+                  "uid": "35240-56fc7318-94dd-4801-9506-b3ae3a8f5a77"
+                }
+              ],
+              "createdAt": "2026-10-21T19:53:34.000Z",
+              "updatedAt": "2026-10-21T19:53:34.000Z",
+              "uid": "35240-9194fc07-f2ef-463d-9c48-ab9c9fbf7574"
+            }
+          ],
+          "id": "d2d0e59d-2ce0-4f1a-b99d-26fcc31f24ab",
+          "createdAt": "2026-10-21T19:53:34.000Z",
+          "updatedAt": "2026-10-21T19:53:34.000Z",
+          "uid": "35240-d2d0e59d-2ce0-4f1a-b99d-26fcc31f24ab"
+        },
+        {
+          "name": "List Voices",
+          "id": "7e8d769d-c64d-406f-b5ff-346109455520",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "API key in the X-API-KEY header.",
                 "key": "X-API-KEY",
-                "value": "<string>"
+                "value": "<string,null>"
               },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/voices?api_key=<string,null>&jwt_token=<string,null>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "voices"
+              ],
+              "query": [
+                {
+                  "description": "API key for authentication.",
+                  "key": "api_key",
+                  "value": "<string,null>"
+                },
+                {
+                  "description": "JWT token obtained from /sse/auth for faster authentication.",
+                  "key": "jwt_token",
+                  "value": "<string,null>"
+                }
+              ]
+            },
+            "description": "Retrieves available voices for the text-to-speech (TTS) feature. Returns a list of TTS voices available in the application, including both standard and cloned voices."
           },
           "response": [
             {
-              "id": "18e7b577-3a5f-43a4-be52-47dc689b44bb",
+              "id": "40ff24ce-6fc1-476e-88f9-4b0bd49f54af",
               "name": "Successful Response",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "API key in the X-API-KEY header.",
                     "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
+                    "value": "<string,null>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/voices?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voices"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"voices\": [\n      {\n        \"voice_id\": \"string\",\n        \"voice_name\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"lang_code\": \"string\",\n        \"is_cloned\": true\n      },\n      {\n        \"voice_id\": \"string\",\n        \"voice_name\": \"string\",\n        \"tags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"lang_code\": \"string\",\n        \"is_cloned\": true\n      }\n    ]\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"voices\": [\n      {\n        \"voice_id\": \"<string>\",\n        \"voice_name\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"lang_code\": \"<string>\",\n        \"is_cloned\": \"<boolean>\"\n      },\n      {\n        \"voice_id\": \"<string>\",\n        \"voice_name\": \"<string>\",\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"lang_code\": \"<string>\",\n        \"is_cloned\": \"<boolean>\"\n      }\n    ]\n  }\n}",
+              "createdAt": "2026-10-21T19:53:35.000Z",
+              "updatedAt": "2026-10-21T19:53:35.000Z",
+              "uid": "35240-40ff24ce-6fc1-476e-88f9-4b0bd49f54af"
             },
             {
-              "id": "32167855-55c3-4d40-8bd0-fce212bda5d6",
+              "id": "ac72e3a6-54cd-4a99-ab47-059cb61ad145",
               "name": "Validation Error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "API key in the X-API-KEY header.",
                     "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
+                    "value": "<string,null>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/voices?api_key=<string,null>&jwt_token=<string,null>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "voices"
+                  ],
+                  "query": [
+                    {
+                      "description": "API key for authentication.",
+                      "key": "api_key",
+                      "value": "<string,null>"
+                    },
+                    {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
+                      "key": "jwt_token",
+                      "value": "<string,null>"
+                    }
+                  ]
+                }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T19:53:35.000Z",
+              "updatedAt": "2026-10-21T19:53:35.000Z",
+              "uid": "35240-ac72e3a6-54cd-4a99-ab47-059cb61ad145"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:53:34.000Z",
+          "updatedAt": "2026-10-21T19:53:34.000Z",
+          "uid": "35240-7e8d769d-c64d-406f-b5ff-346109455520"
         },
         {
-          "id": "f87eba3c-74ca-4144-aef8-f706bbdac928",
           "name": "Clone Voice",
+          "id": "730e365f-c184-4658-ad84-2c2c6b176bae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Clone Voice",
-            "description": {
-              "content": "Create a cloned voice by uploading an audio sample. Accepts MP3 or WAV files (minimum 6 seconds, under 10MB). Voice cloning is available in English, French, German, and Spanish.\n",
-              "type": "text/plain"
+            "method": "POST",
+            "header": [
+              {
+                "description": "API key in the X-API-KEY header.",
+                "key": "X-API-KEY",
+                "value": "<string,null>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "description": "(Required) Audio file containing the voice sample (MP3 or WAV).",
+                  "key": "voice_file",
+                  "type": "file",
+                  "value": null
+                }
+              ]
             },
             "url": {
+              "raw": "{{baseUrl}}/voices?voice_name=<string>&voice_tags=<string>&lang_code=en&api_key=<string,null>&jwt_token=<string,null>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "voices"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "(Required) The desired name for the cloned voice.",
                   "key": "voice_name",
-                  "value": "<string>",
-                  "description": "(Required) The desired name for the cloned voice."
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Comma-separated tags associated with the voice.",
                   "key": "voice_tags",
-                  "value": "<string>",
-                  "description": "Comma-separated tags associated with the voice."
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Language code for the cloned voice (e.g., en, fr, de, es).",
                   "key": "lang_code",
-                  "value": "en",
-                  "description": "Language code for the cloned voice (e.g., en, fr, de, es)."
+                  "value": "en"
                 },
                 {
-                  "disabled": false,
+                  "description": "API key for authentication.",
                   "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
+                  "value": "<string,null>"
                 },
                 {
-                  "disabled": false,
+                  "description": "JWT token obtained from /sse/auth for faster authentication.",
                   "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "voice_file",
-                  "type": "file",
-                  "description": "(Required) Audio file containing the voice sample (MP3 or WAV)."
+                  "value": "<string,null>"
                 }
               ]
-            }
+            },
+            "description": "Create a cloned voice by uploading an audio sample. Accepts MP3 or WAV files (minimum 6 seconds, under 10MB). Voice cloning is available in English, French, German, and Spanish."
           },
           "response": [
             {
-              "id": "e3da02f3-1e38-4b77-811a-1b0b998922d9",
+              "id": "1bdc9c1b-42fc-41fe-b4f9-34603e13c273",
               "name": "Voice cloned successfully.",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Audio file containing the voice sample (MP3 or WAV).",
+                      "key": "voice_file",
+                      "type": "file"
+                    }
+                  ]
+                },
                 "url": {
-                  "path": [
-                    "voices"
-                  ],
+                  "raw": "{{baseUrl}}/voices?voice_name=<string>&voice_tags=<string>&lang_code=en&api_key=<string,null>&jwt_token=<string,null>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "voices"
+                  ],
                   "query": [
                     {
+                      "description": "(Required) The desired name for the cloned voice.",
                       "key": "voice_name",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated tags associated with the voice.",
                       "key": "voice_tags",
                       "value": "<string>"
                     },
                     {
+                      "description": "Language code for the cloned voice (e.g., en, fr, de, es).",
                       "key": "lang_code",
                       "value": "en"
                     },
                     {
+                      "description": "API key for authentication.",
                       "key": "api_key",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     },
                     {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
                       "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) Audio file containing the voice sample (MP3 or WAV).",
-                        "type": "text/plain"
-                      },
-                      "key": "voice_file",
-                      "value": "<binary>",
-                      "type": "text"
+                      "value": "<string,null>"
                     }
                   ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"message\": \"string\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T19:53:35.000Z",
+              "updatedAt": "2026-10-21T19:53:35.000Z",
+              "uid": "35240-1bdc9c1b-42fc-41fe-b4f9-34603e13c273"
             },
             {
-              "id": "4bb49c74-f676-45f3-8a8e-8a1f0cfad205",
+              "id": "93505af9-19cf-44d3-a11b-5efb3d17e8ef",
               "name": "Validation Error",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "API key in the X-API-KEY header.",
+                    "key": "X-API-KEY",
+                    "value": "<string,null>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) Audio file containing the voice sample (MP3 or WAV).",
+                      "key": "voice_file",
+                      "type": "file"
+                    }
+                  ]
+                },
                 "url": {
-                  "path": [
-                    "voices"
-                  ],
+                  "raw": "{{baseUrl}}/voices?voice_name=<string>&voice_tags=<string>&lang_code=en&api_key=<string,null>&jwt_token=<string,null>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "voices"
+                  ],
                   "query": [
                     {
+                      "description": "(Required) The desired name for the cloned voice.",
                       "key": "voice_name",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated tags associated with the voice.",
                       "key": "voice_tags",
                       "value": "<string>"
                     },
                     {
+                      "description": "Language code for the cloned voice (e.g., en, fr, de, es).",
                       "key": "lang_code",
                       "value": "en"
                     },
                     {
+                      "description": "API key for authentication.",
                       "key": "api_key",
-                      "value": "<string>"
+                      "value": "<string,null>"
                     },
                     {
+                      "description": "JWT token obtained from /sse/auth for faster authentication.",
                       "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "(Required) Audio file containing the voice sample (MP3 or WAV).",
-                        "type": "text/plain"
-                      },
-                      "key": "voice_file",
-                      "value": "<binary>",
-                      "type": "text"
+                      "value": "<string,null>"
                     }
                   ]
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"loc\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"msg\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T19:53:35.000Z",
+              "updatedAt": "2026-10-21T19:53:35.000Z",
+              "uid": "35240-93505af9-19cf-44d3-a11b-5efb3d17e8ef"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3d6fdf62-a65f-4288-a3ea-68dea11a1c9d",
-          "name": "Update Voice",
-          "request": {
-            "name": "Update Voice",
-            "description": {
-              "content": "Update the audio clip or metadata associated with a cloned voice. Requires the voice to belong to the authenticated user.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "voices",
-                ":voice_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "new_voice_name",
-                  "value": "<string>",
-                  "description": "New name for the cloned voice."
-                },
-                {
-                  "disabled": false,
-                  "key": "new_voice_tags",
-                  "value": "<string>",
-                  "description": "Updated comma-separated tags for the voice."
-                },
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "voice_id",
-                  "description": "(Required) The unique identifier of the voice to update."
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "multipart/form-data"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "new_voice_file",
-                  "type": "file",
-                  "description": "New audio file to replace the existing voice sample."
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "a49a636d-5cb6-44a5-a26c-b63bd743022d",
-              "name": "Voice updated successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices",
-                    ":voice_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "new_voice_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "new_voice_tags",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "voice_id",
-                      "description": "(Required) The unique identifier of the voice to update."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "New audio file to replace the existing voice sample.",
-                        "type": "text/plain"
-                      },
-                      "key": "new_voice_file",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "72aa3967-af4e-4a23-8331-f6985d1bf270",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices",
-                    ":voice_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "new_voice_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "new_voice_tags",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "voice_id",
-                      "description": "(Required) The unique identifier of the voice to update."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "description": {
-                        "content": "New audio file to replace the existing voice sample.",
-                        "type": "text/plain"
-                      },
-                      "key": "new_voice_file",
-                      "value": "<binary>",
-                      "type": "text"
-                    }
-                  ]
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "27d90620-c23d-4e05-a767-938150d0aad6",
-          "name": "Delete Cloned Voice",
-          "request": {
-            "name": "Delete Cloned Voice",
-            "description": {
-              "content": "Delete a cloned voice from the system. Removes all associated data. The voice must belong to the authenticated user.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "voices",
-                ":voice_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "api_key",
-                  "value": "<string>",
-                  "description": "API key for authentication."
-                },
-                {
-                  "disabled": false,
-                  "key": "jwt_token",
-                  "value": "<string>",
-                  "description": "JWT token obtained from /sse/auth for faster authentication."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "voice_id",
-                  "description": "(Required) The unique identifier of the voice to delete."
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "API key in the X-API-KEY header.",
-                "key": "X-API-KEY",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "98d8418f-a1b5-4b95-9de8-8da4bd5b6a76",
-              "name": "Voice deleted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices",
-                    ":voice_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "voice_id",
-                      "description": "(Required) The unique identifier of the voice to delete."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"message\": \"string\",\n  \"voice_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "501716ef-9a4a-484e-adec-f987f35334f8",
-              "name": "Validation Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "voices",
-                    ":voice_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "api_key",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "jwt_token",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "voice_id",
-                      "description": "(Required) The unique identifier of the voice to delete."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "API key in the X-API-KEY header.",
-                    "key": "X-API-KEY",
-                    "value": "<string>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Bearer JWT token in the Authorization header.",
-                    "key": "authorization",
-                    "value": "string"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:53:34.000Z",
+          "updatedAt": "2026-10-21T19:53:34.000Z",
+          "uid": "35240-730e365f-c184-4658-ad84-2c2c6b176bae"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.neuphonic.com",
-      "key": "baseUrl"
+      "id": "533f1f6a-e03c-491a-8ba7-0f96cf737e93",
+      "createdAt": "2026-10-21T19:53:34.000Z",
+      "updatedAt": "2026-10-21T19:53:34.000Z",
+      "uid": "35240-533f1f6a-e03c-491a-8ba7-0f96cf737e93"
     }
   ],
   "auth": {
@@ -957,25 +903,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-KEY"
+        "value": "X-API-KEY",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "46e2f626-94b8-4013-a216-0d69ca86d54b",
-    "name": "Neuphonic Agents Voices API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neuphonic.com"
     }
-  }
+  ]
 }

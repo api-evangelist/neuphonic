@@ -1,101 +1,96 @@
 {
+  "info": {
+    "_postman_id": "1ad2bfd5-9a43-49ae-b756-a2ae3c3343bc",
+    "name": "Neuphonic Ping API",
+    "description": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T19:53:20.000Z",
+    "updatedAt": "2026-10-21T19:53:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1ad2bfd5-9a43-49ae-b756-a2ae3c3343bc"
+  },
   "item": [
     {
-      "id": "940bdc2c-cc8a-4b57-8768-ac0cb2fbedd3",
-      "name": "Ping",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "ping",
       "item": [
         {
-          "id": "da96f088-4de4-41b6-9012-1ed3ec4a0171",
           "name": "Ping",
+          "id": "12956bb2-60f7-4b55-bee6-c49168254ed4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Ping",
-            "description": {
-              "content": "Health check endpoint to verify the API is reachable.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "ping"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
+            "url": {
+              "raw": "{{baseUrl}}/ping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ping"
+              ]
+            },
+            "description": "Health check endpoint to verify the API is reachable."
           },
           "response": [
             {
-              "id": "6f1c6043-ef19-4950-a843-59a52a0bf869",
+              "id": "f107c035-247e-41d5-b16c-b7de6cf74c2f",
               "name": "Successful Response",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "ping"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "X-API-KEY",
-                    "value": "<API Key>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/ping",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ping"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T19:53:20.000Z",
+              "updatedAt": "2026-10-21T19:53:20.000Z",
+              "uid": "35240-f107c035-247e-41d5-b16c-b7de6cf74c2f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T19:53:20.000Z",
+          "updatedAt": "2026-10-21T19:53:20.000Z",
+          "uid": "35240-12956bb2-60f7-4b55-bee6-c49168254ed4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.neuphonic.com",
-      "key": "baseUrl"
+      "id": "3cc52cbf-42a7-4219-9a01-da12617dd422",
+      "createdAt": "2026-10-21T19:53:20.000Z",
+      "updatedAt": "2026-10-21T19:53:20.000Z",
+      "uid": "35240-3cc52cbf-42a7-4219-9a01-da12617dd422"
     }
   ],
   "auth": {
@@ -103,25 +98,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "X-API-KEY"
+        "value": "X-API-KEY",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "header"
+        "value": "header",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "76877d44-e56f-4255-a3b2-3f46bd48367a",
-    "name": "Neuphonic Agents Ping API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Neuphonic is an ultra-low-latency voice AI platform providing real-time text-to-speech synthesis, voice cloning, and conversational AI agent management. The API supports SSE streaming, voice management, and agent lifecycle operations. Authentication uses API keys via the X-API-KEY header or api_key query parameter.\n",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neuphonic.com"
     }
-  }
+  ]
 }
