@@ -1,4 +1,4 @@
-# Neuphonic (neuphonic)
+# Neuphonic
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,69 +64,162 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Neuphonic is an ultra-low-latency voice AI platform delivering sub-25ms text-to-speech synthesis for real-time conversational applications. The platform provides a cloud API with WebSocket streaming and Server-Sent Events, as well as open-source on-device models (NeuTTS Air, NeuTTS Nano) that run without a GPU. Neuphonic supports nine languages, instant voice cloning, and a conversational Agent API integrating GPT-4o and Model Context Protocol servers.
+Neuphonic is an ultra-low-latency voice AI platform specializing in real-time text-to-speech synthesis with sub-25ms latency, making it suitable for conversational AI and live applications. The platform provides both a cloud-hosted API with WebSocket streaming and Server-Sent Events (SSE), as well as open-source on-device models (NeuTTS Air, NeuTTS Nano) that run without a GPU. Neuphonic supports nine languages including English, Spanish, German, French, Urdu, Japanese, Korean, Chinese, and Portuguese, and offers instant voice cloning from short audio samples. Developers can also build conversational AI agents via the Agent API, which integrates with GPT-4o and supports Model Context Protocol (MCP) servers. Authentication uses API keys passed via the X-API-KEY header for SSE and as a query parameter for WebSocket connections.
 
-**APIs.json:** https://raw.githubusercontent.com/api-evangelist/neuphonic/refs/heads/main/apis.yml
+**Areas:** Text-to-Speech · Voice AI · Audio · Streaming · WebSocket · Voice Cloning · Conversational AI · Real-Time · Multilingual · On-Device AI
 
-**Naftiko:** https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=neuphonic-api-evangelist&utm_content=repo
+## Neuphonic on APIs.io
 
----
+Everything profiled for Neuphonic is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/neuphonic/](https://apis.io/providers/neuphonic/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-Text-to-Speech, Voice AI, Audio, Streaming, WebSocket, Voice Cloning, Conversational AI, Real-Time, Multilingual, On-Device AI
+- [Neuphonic TTS WebSocket API](https://apis.io/apis/neuphonic/neuphonic-tts-websocket-api/) — WebSocket endpoint for continuous, low-latency text-to-speech streaming. Enables real-time voice synthesis with sub-25ms latency, supporting multiple text…
+- [Neuphonic Voice Cloning API](https://apis.io/apis/neuphonic/neuphonic-voice-cloning-api/) — REST API for creating and managing cloned voices. Accepts audio samples (MP3 or WAV, minimum 6 seconds, under 10MB) and generates a custom voice model.…
+- [Neuphonic Agent API](https://apis.io/apis/neuphonic/neuphonic-agent-api/) — REST API for creating and managing conversational AI voice agents. Agents combine Neuphonic TTS with GPT-4o for interactive voice applications and support…
+- [Neuphonic Agents API](https://apis.io/apis/neuphonic/neuphonic-agents-api/) — The Agents API from Neuphonic — 3 operation(s) for agents.
+- [Neuphonic Ping API](https://apis.io/apis/neuphonic/neuphonic-ping-api/) — The Ping API from Neuphonic — 1 operation(s) for ping.
+- [Neuphonic Sse API](https://apis.io/apis/neuphonic/neuphonic-sse-api/) — The Sse API from Neuphonic — 2 operation(s) for sse.
+- [Neuphonic Voices API](https://apis.io/apis/neuphonic/neuphonic-voices-api/) — The Voices API from Neuphonic — 2 operation(s) for voices.
 
----
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Name | Description |
-|------|-------------|
-| Neuphonic TTS SSE API | Server-Sent Events endpoint for real-time text-to-speech synthesis with language and voice selection |
-| Neuphonic TTS WebSocket API | WebSocket endpoint for continuous low-latency streaming TTS with sub-25ms latency |
-| Neuphonic Voice Cloning API | REST API for creating and managing custom cloned voices from audio samples |
-| Neuphonic Agent API | REST API for building and managing conversational AI voice agents with GPT-4o integration |
+#### Agentic access (1)
 
----
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Plans / Rate Limits / FinOps
+- [Neuphonic Agentic Access](https://apis.io/agentic-access/neuphonic/neuphonic-agentic-access/)
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/neuphonic-plans-pricing.yml](plans/neuphonic-plans-pricing.yml) |
-| Rate Limits | [rate-limits/neuphonic-rate-limits.yml](rate-limits/neuphonic-rate-limits.yml) |
-| FinOps | [finops/neuphonic-finops.yml](finops/neuphonic-finops.yml) |
+#### JSON Schema (3)
 
-**Pricing summary:**
-- **Free** — $0/month, limited concurrency, core TTS access
-- **Business** — $79/month (or $948/year), full feature access including voice cloning and agents
-- **Enterprise** — Custom pricing, on-premises deployment, dedicated SLA
+The data models the API reads and writes.
 
----
+- [Agent](https://apis.io/schemas/neuphonic/neuphonic-agent/)
+- [SSE TTS Request](https://apis.io/schemas/neuphonic/neuphonic-sse-request/)
+- [Voice](https://apis.io/schemas/neuphonic/neuphonic-voice/)
 
-## Timestamps
+#### JSON-LD (1)
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+Linked-data contexts for the provider's vocabulary.
 
----
+- [Neuphonic Context](https://apis.io/jsonld/neuphonic/neuphonic-context/)
 
-## Common Properties
+#### Vocabulary (1)
 
-| Type | URL |
-|------|-----|
-| Website | https://www.neuphonic.com/ |
-| Documentation | https://docs.neuphonic.com/ |
-| GitHub Organization | https://github.com/neuphonic |
-| LinkedIn | https://uk.linkedin.com/company/neuphonic |
-| X (Twitter) | https://twitter.com/neuphonicspeech |
-| Status Page | https://status.neuphonic.com/ |
-| Playground | https://app.neuphonic.com/ |
+The provider's domain terms, defined.
 
----
+- [Neuphonic Vocabulary](https://apis.io/vocabularies/neuphonic/neuphonic-vocabulary/)
 
-## Maintainers
+#### Examples (4)
 
-| Name | Email |
-|------|-------|
-| Kin Lane | kin@apievangelist.com |
+Example requests and responses.
+
+- [Clone Voice](https://apis.io/examples/neuphonic/clone-voice/)
+- [Create Agent](https://apis.io/examples/neuphonic/create-agent/)
+- [List Voices](https://apis.io/examples/neuphonic/list-voices/)
+- [Sse Speak](https://apis.io/examples/neuphonic/sse-speak/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Neuphonic Agents API](https://apis.io/collections/neuphonic/open-neuphonic-agents-api/)
+- [Neuphonic Agents Ping API](https://apis.io/collections/neuphonic/open-neuphonic-ping-api/)
+- [Neuphonic Agents Sse API](https://apis.io/collections/neuphonic/open-neuphonic-sse-api/)
+- [Neuphonic Agents Voices API](https://apis.io/collections/neuphonic/open-neuphonic-voices-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Neuphonic — jsonschema rules](https://apis.io/rules/neuphonic/neuphonic-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Neuphonic Authentication](https://apis.io/security/neuphonic/neuphonic-authentication/)
+- [Neuphonic Domain Security](https://apis.io/security/neuphonic/neuphonic-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Neuphonic Plans Pricing](https://apis.io/plans/neuphonic/neuphonic-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Neuphonic Rate Limits](https://apis.io/rate-limits/neuphonic/neuphonic-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Neuphonic Finops](https://apis.io/finops/neuphonic/neuphonic-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.neuphonic.com/)
+- [Documentation](https://docs.neuphonic.com/)
+- [Blog](https://www.neuphonic.com/blog)
+- [GitHub](https://github.com/neuphonic)
+- [Status](https://status.neuphonic.com/)
+
+## API Evangelist rating
+
+**Kin Score 35.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 66.8 |
+| Contract governance | 23.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 27.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 21.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | unknown |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.0** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/neuphonic/](https://apis.io/providers/neuphonic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Neuphonic: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/neuphonic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
